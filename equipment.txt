@@ -1,0 +1,11 @@
+Name,Description,Date of Purchase,Purchase Cost,Hire Cost per Weekend,Hire Cost per Week,Activity,Returned
+Camping Tent,"4-person, waterproof",2023-08-15,$120.00,$20.00,$40.00,"Camping, Hiking",TRUE
+Backpacks,"30L, multiple compartments",2024-02-01,$80.00,$10.00,$20.00,"Hiking, Trekking",TRUE
+Sleeping Bags,"2-person, temperature rated",2023-10-10,$150.00,$25.00,$50.00,"Camping, Hiking",FALSE
+First Aid Kit,"Comprehensive, waterproof",2024-04-12,$40.00,$5.00,$10.00,All activities,TRUE
+Climbing Gear,"Harness, carabiners, belay device",2023-12-25,$200.00,$30.00,$60.00,Rock Climbing,FALSE
+Kayaks,"2-person, sit-on-top",2022-06-18,$400.00,$50.00,$100.00,"Kayaking, Paddling",TRUE
+Mountain Bikes,"29-inch, full suspension",2024-01-05,$350.00,$30.00,$60.00,"Mountain Biking, Cycling",FALSE
+Camping Stove,"Portable, propane-powered",2023-07-12,$60.00,$10.00,$20.00,"Camping, Cooking",TRUE
+Hiking Boots,"Waterproof, ankle-high",2024-03-20,$100.00,$15.00,$30.00,"Hiking, Trekking",TRUE
+Fishing Rods & Tackle,"Variety of sizes, lures",2023-05-08,$120.00,$20.00,$40.00,Fishing,TRUE
