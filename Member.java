@@ -20,7 +20,7 @@ public class Member {
 	/* getters*/
 	public int getMemberNumber() {return member_number;}
 	public int getPhoneNumber() {return phone_number;}
-	public int getNumberOfMembers() {return numberofmembers;}
+	public static int getNumberOfMembers() {return numberofmembers;}
 	public int getStudentRoleNumber() {return student_role_number;}
 	public String getFirstName() {return first_name;}
 	public String getLastName() {return last_name;}
