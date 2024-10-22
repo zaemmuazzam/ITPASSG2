@@ -4,6 +4,10 @@ public class Member {
 	private int phone_number, student_role_number, member_number;
 	private static int numberofmembers=0;
 	
+	public Member() {
+		numberofmembers=0;
+	}
+	
 	public Member (int member_number,String first_name, String last_name, 
 			String email, String address,int student_role_number,int phone_number) {
 		this.member_number=member_number;
@@ -20,7 +24,7 @@ public class Member {
 	/* getters*/
 	public int getMemberNumber() {return member_number;}
 	public int getPhoneNumber() {return phone_number;}
-	public static int getNumberOfMembers() {return numberofmembers;}
+	public int getNumberOfMembers() {return numberofmembers;}
 	public int getStudentRoleNumber() {return student_role_number;}
 	public String getFirstName() {return first_name;}
 	public String getLastName() {return last_name;}
@@ -30,7 +34,7 @@ public class Member {
 	/*setters*/
 	public void setMemberNumber(int member_number) {this.member_number=member_number;}
 	public void setPhoneNumber(int phone_number) {this.phone_number=phone_number;}
-	//public void setNumberOfMembers() {return numberofmembers;}
+	public static void setNumberOfMembers(int value) {numberofmembers=value;}
 	public void setStudentRoleNumber(int student_role_number) {this.student_role_number=student_role_number;}
 	public void setFirstName(String first_name) {this.first_name=first_name;}
 	public void setLastName(String last_name) {this.last_name=last_name;}
