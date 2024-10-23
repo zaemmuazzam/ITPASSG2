@@ -9,9 +9,7 @@ public class MemberArray{
 		
 	
 	public MemberArray(String txtfile) {
-		//ArrayList<Member> members = new ArrayList<Member>();
-		
-		//Member[] members = new Member[300];
+
 		Member.setNumberOfMembers(0);
 		members = new Member[300];
 		int count =0;
@@ -19,9 +17,9 @@ public class MemberArray{
 		try {
 			File myFile = new File (txtfile);
 			Scanner input = new Scanner(myFile);
-			//line.useDelimiter(";");
+	
 			while(input.hasNextLine()) {
-//		
+
 //					System.out.println("Round "+count);
 					String line = input.nextLine();
 					Scanner word = new Scanner(line);
@@ -49,8 +47,7 @@ public class MemberArray{
 					members[a.getNumberOfMembers()-1]=a;
 					word.close();
 					
-					//System.out.println(data);
-				//}
+
 			}
 			input.close();
 			
@@ -76,7 +73,7 @@ public class MemberArray{
 	
 	public Member[] getArray() {return members;}
 	
-	public void displayMember() {
+	public void displayMembers() {
 		for (int i=0;i<members.length;i++) {
 			if (members[i] == null || members[i].equals("")) {
 				break;
