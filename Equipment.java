@@ -30,7 +30,7 @@ public class Equipment {
 	public int getHireCostPerWeekend() {return hire_cost_per_weekend;}
 	public int getHireCostPerWeek() {return hire_cost_per_week;}
 	public Boolean getReturned() {return returned;}
-	public static int getNumberOfEquipment() {return numberofequipment;}
+	public int getNumberOfEquipment() {return numberofequipment;}
 
 	// Setters 
 	public void setName(String name) {this.name = name;}
@@ -42,8 +42,9 @@ public class Equipment {
 	public void setHireCostPerWeekend(int hire_cost_per_weekend) {this.hire_cost_per_weekend = hire_cost_per_weekend;}
 	public void setHireCostPerWeek(int hire_cost_per_week) {this.hire_cost_per_week = hire_cost_per_week;}
 	public void setReturned(Boolean returned) {this.returned = returned;}
+	public static void setNumberOfEquipment(int value) {numberofequipment=value;}
 	
-	public String displayMember() {return equipment_number+ ", " + name+ ", " + description + ", " + date_of_purchased + ", " + purchase_cost + ", " 
+	public String displayEquipment() {return equipment_number+ ", " + name+ ", " + description + ", " + date_of_purchased + ", " + purchase_cost + ", " 
 			+ hire_cost_per_weekend + ", " + hire_cost_per_week + ", " + activity + ", " + returned;}
 	
 	public String toString() { return equipment_number+ ";" + name+ ";" + description + ";" + date_of_purchased + ";" + purchase_cost + ";" 
