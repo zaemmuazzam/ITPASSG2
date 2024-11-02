@@ -6,6 +6,8 @@ public class MainInterface {
     public static void main(String[] args) {
     	MemberArray memarray= new MemberArray("member.txt");
     	EquipmentArray eqarray= new EquipmentArray("equipment.txt");
+    	Loan.loadLoans();
+    	//Loan.main2(args);
     	
         Scanner scanner = new Scanner(System.in);
         int choice;
@@ -87,6 +89,7 @@ public class MainInterface {
 
                 case 4:
                     System.out.println("Loaned Equipment:");
+                    
 //                    for (LoanedItem item : loanedItems) {
 //                        System.out.println("Equipment: " + item.equipment.name + ", Loaned to: " + item.memberName);
 //                    }
@@ -100,7 +103,7 @@ public class MainInterface {
 
                 case 6:
                     System.out.print("Enter equipment name to return: ");
-                    String returnEquipmentName = scanner.nextLine();
+//                    String returnEquipmentName = scanner.nextLine();
 //                    LoanedItem itemToReturn = findLoanedItem(returnEquipmentName);
 //                    if (itemToReturn != null) {
 //                        itemToReturn.equipment.isLoaned = false;
