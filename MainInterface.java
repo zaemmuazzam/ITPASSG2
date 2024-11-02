@@ -62,7 +62,7 @@ public class MainInterface {
                     int costperweek= scanner.nextInt();
                     System.out.print("Enter the activity: ");
                     //activity here
-                    String activity = "All";
+                    String activity = Activity.main(args);
                     
                     eqarray.addEquipment(equipmentname, description, dateofpurchase, purchasecost, costperweekend, costperweek, activity, true);
                     
