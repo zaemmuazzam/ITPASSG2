@@ -84,7 +84,7 @@ public class EquipmentArray {
 			if (equipments[i] == null || equipments[i].equals("")) {
 				break;
 			}
-			else if (number==equipments[i].getEquipmentNumber()&&equipments[i].getReturned() == true) {
+			else if (equipments[i].getEquipmentNumber()==number&&equipments[i].getReturned()==true) {
 				result[0]=Integer.toString(equipments[i].getEquipmentNumber());
 				result[1]=Integer.toString(equipments[i].getHireCostPerWeekend());
 				result[2]=Integer.toString(equipments[i].getHireCostPerWeek());
@@ -134,10 +134,10 @@ public class EquipmentArray {
 			if (equipments[i] == null || equipments[i].equals("")) {
 				break;
 			}
-			else if (equipments[i].getActivity() == activity) {
-				System.out.println(equipments[i].getEquipmentNumber()+equipments[i].getName()
-						+equipments[i].getDescription()+equipments[i].getHireCostPerWeekend()
-						+equipments[i].getHireCostPerWeek());}
+			else if ((equipments[i].getActivity()).equalsIgnoreCase(activity)&&equipments[i].getReturned() == true) {
+				System.out.println(equipments[i].getEquipmentNumber()+", "+equipments[i].getName()
+						+", "+equipments[i].getDescription()+", $"+equipments[i].getHireCostPerWeekend()
+						+", $"+equipments[i].getHireCostPerWeek());}
 			}
 			
 		}
@@ -147,7 +147,7 @@ public class EquipmentArray {
 			if (equipments[i] == null || equipments[i].equals("")) {
 				break;
 			}
-			else if (equipments[i].getEquipmentNumber()==equipmentnumber&&equipments[i].getActivity()==activity) {
+			else if (equipments[i].getEquipmentNumber()==equipmentnumber&&(equipments[i].getActivity()).equalsIgnoreCase(activity)) {
 				return true;
 			}
 		}

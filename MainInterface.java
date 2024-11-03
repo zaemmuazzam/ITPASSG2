@@ -142,9 +142,9 @@ public class MainInterface {
 	            try {
 	 
 	                System.out.print("Enter loan date (yyyy-MM-dd): ");
-	                loanDate = LocalDate.parse(scanner.nextLine());
+	                loanDate = LocalDate.parse(scanner.next());
 	                System.out.println("Enter expected return date (yyyy-MM-dd): ");
-	                returnDate = LocalDate.parse(scanner.nextLine());
+	                returnDate = LocalDate.parse(scanner.next());
 	                break;
 	            } catch (Exception e) {
 	                System.out.println("Invalid date format. Please try again.");
@@ -153,11 +153,13 @@ public class MainInterface {
 	        }
 	        
 	        while(true) {
+	      
 	        	String activity=Activity.selectActivity();
+	        	
 		        equipmentarray.displayEquipmentByActivity(activity);
 		        System.out.print("Enter equipment number: ");
 		        equipmentNumber = scanner.nextInt();
-		        if (equipmentarray.checkActivityEquipmentNumberMatch(activity, equipmentNumber)==true) {
+		        if (equipmentarray.checkActivityEquipmentNumberMatch(activity, equipmentNumber)) {
 		        	equipment=equipmentarray.getEquipmentNumberByNumber(equipmentNumber);
 			        if(equipment.length==0) {
 			        	System.out.println("Please enter a valid equipment number");

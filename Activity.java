@@ -51,7 +51,6 @@ public class Activity {
                 System.out.println("Invalid choice. Please enter a number from 0 to 6.");
         }
 
-        scanner.close();
         return activity;
     }
 }

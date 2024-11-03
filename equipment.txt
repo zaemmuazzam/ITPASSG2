@@ -1,20 +1,20 @@
-1;Harness;Small harness;03/12/2023;25;2;4;rock climbing;true
-2;Tent;2-person lightweight camping tent;15/05/2022;150;15;30;hiking;false
-3;Helmet;Protective helmet for safety;10/07/2023;45;5;10;bush walking;true
-4;Kayak;Single-seat inflatable kayak;20/08/2021;300;25;50;paddling;false
-5;Mountain Bike;Off-road mountain bike with 21 gears;30/09/2020;500;35;60;mountain biking;true
-6;Rope;50m climbing rope;12/11/2022;120;10;20;rock climbing;false
-7;Headlamp;Water-resistant headlamp with adjustable beam;02/02/2023;30;3;6;caving;true
-8;Backpack;50L hiking backpack with multiple compartments;18/04/2023;80;8;16;hiking;true
-9;Canoe;Double-seat canoe with paddles;25/06/2021;400;30;55;paddling;true
-10;All-Terrain Vehicle;4-wheel ATV for various terrains;05/10/2020;1500;100;150;all;true
-11;Climbing Shoes;Slip-resistant climbing shoes;22/07/2023;75;7;14;rock climbing;true
-12;Sleeping Bag;Thermal sleeping bag for cold weather;12/12/2021;100;10;18;hiking;true
-13;Trekking Poles;Adjustable trekking poles for balance;08/03/2022;40;4;8;bush walking;true
-14;Waterproof Jacket;Lightweight and breathable rain jacket;17/09/2023;60;6;12;mountain biking;true
-15;Paddle;Carbon fiber paddle for kayaking;25/05/2022;90;8;15;paddling;false
-16;Caving Suit;Full-body protective suit for caving;01/08/2021;120;12;22;caving;true
-17;First Aid Kit;Compact kit with essential first aid supplies;10/11/2023;30;3;6;all;true
-18;Climbing Helmet;Helmet with adjustable fit and ventilation;21/06/2022;55;5;10;rock climbing;true
-19;GPS Device;Handheld GPS navigator for outdoor activities;14/04/2021;200;20;35;hiking;true
-20;Wet Suit;Full-body wet suit for water sports;02/05/2023;150;15;25;paddling;true
+0;Harness;Small harness;03/12/2023;25;2;4;rock climbing;true
+1;Tent;2-person lightweight camping tent;15/05/2022;150;15;30;hiking;true
+2;Helmet;Protective helmet for safety;10/07/2023;45;5;10;bush walking;true
+3;Kayak;Single-seat inflatable kayak;20/08/2021;300;25;50;paddling;true
+4;Mountain Bike;Off-road mountain bike with 21 gears;30/09/2020;500;35;60;mountain biking;true
+5;Rope;50m climbing rope;12/11/2022;120;10;20;rock climbing;true
+6;Headlamp;Water-resistant headlamp with adjustable beam;02/02/2023;30;3;6;caving;true
+7;Backpack;50L hiking backpack with multiple compartments;18/04/2023;80;8;16;hiking;false
+8;Canoe;Double-seat canoe with paddles;25/06/2021;400;30;55;paddling;true
+9;All-Terrain Vehicle;4-wheel ATV for various terrains;05/10/2020;1500;100;150;all;false
+10;Climbing Shoes;Slip-resistant climbing shoes;22/07/2023;75;7;14;rock climbing;true
+11;Sleeping Bag;Thermal sleeping bag for cold weather;12/12/2021;100;10;18;hiking;false
+12;Trekking Poles;Adjustable trekking poles for balance;08/03/2022;40;4;8;bush walking;true
+13;Waterproof Jacket;Lightweight and breathable rain jacket;17/09/2023;60;6;12;mountain biking;true
+14;Paddle;Carbon fiber paddle for kayaking;25/05/2022;90;8;15;paddling;true
+15;Caving Suit;Full-body protective suit for caving;01/08/2021;120;12;22;caving;true
+16;First Aid Kit;Compact kit with essential first aid supplies;10/11/2023;30;3;6;all;true
+17;Climbing Helmet;Helmet with adjustable fit and ventilation;21/06/2022;55;5;10;rock climbing;true
+18;GPS Device;Handheld GPS navigator for outdoor activities;14/04/2021;200;20;35;hiking;true
+19;Wet Suit;Full-body wet suit for water sports;02/05/2023;150;15;25;paddling;true
