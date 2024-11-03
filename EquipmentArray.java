@@ -104,9 +104,9 @@ public class EquipmentArray {
 				break;
 			}
 			else if (equipments[i].getReturned() == true) {
-				System.out.println(equipments[i].getEquipmentNumber()+equipments[i].getName()
-						+equipments[i].getDescription()+equipments[i].getHireCostPerWeekend()
-						+equipments[i].getHireCostPerWeek());}
+				System.out.println(equipments[i].getEquipmentNumber()+", "+equipments[i].getName()
+						+", "+equipments[i].getDescription()+", $"+equipments[i].getHireCostPerWeekend()
+						+", $"+equipments[i].getHireCostPerWeek());}
 			}
 		
 	}
