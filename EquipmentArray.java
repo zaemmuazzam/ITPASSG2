@@ -78,12 +78,45 @@ public class EquipmentArray {
 	
 	public Equipment[] getArray() {return equipments;}
 	
+	public String[] getEquipmentNumberByNumber(int number) {
+		String[] result = new String[3];
+		for (int i=0;i<equipments.length;i++) {
+			if (equipments[i] == null || equipments[i].equals("")) {
+				break;
+			}
+			else if (number==equipments[i].getEquipmentNumber()&&equipments[i].getReturned() == true) {
+				result[0]=Integer.toString(equipments[i].getEquipmentNumber());
+				result[1]=Integer.toString(equipments[i].getHireCostPerWeekend());
+				result[2]=Integer.toString(equipments[i].getHireCostPerWeek());
+		
+				return result;
+			}	
+		}
+		return result;
+		
+	}
+	
+	
+	public void displayEquipmentForLoan() {
+		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
+		for (int i=0;i<equipments.length;i++) {
+			if (equipments[i] == null || equipments[i].equals("")) {
+				break;
+			}
+			else if (equipments[i].getReturned() == true) {
+				System.out.println(equipments[i].getEquipmentNumber()+equipments[i].getName()
+						+equipments[i].getDescription()+equipments[i].getHireCostPerWeekend()
+						+equipments[i].getHireCostPerWeek());}
+			}
+		
+	}
+	
 	public void displayEquipments() {
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
 				break;
 			}
-			else {System.out.println(equipments[i].displayEquipment());}
+			else {System.out.println(equipments[i].displayEquipmentDetail());}
 			
 		}
 	}
@@ -95,6 +128,51 @@ public class EquipmentArray {
 		
 	}
 	
+	public void displayEquipmentByActivity(String activity) {
+		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
+		for (int i=0;i<equipments.length;i++) {
+			if (equipments[i] == null || equipments[i].equals("")) {
+				break;
+			}
+			else if (equipments[i].getActivity() == activity) {
+				System.out.println(equipments[i].getEquipmentNumber()+equipments[i].getName()
+						+equipments[i].getDescription()+equipments[i].getHireCostPerWeekend()
+						+equipments[i].getHireCostPerWeek());}
+			}
+			
+		}
+		
+	public boolean checkActivityEquipmentNumberMatch(String activity, int equipmentnumber) {
+		for (int i=0;i<equipments.length;i++) {
+			if (equipments[i] == null || equipments[i].equals("")) {
+				break;
+			}
+			else if (equipments[i].getEquipmentNumber()==equipmentnumber&&equipments[i].getActivity()==activity) {
+				return true;
+			}
+		}
+		return false;	
+		
+		
+	}
+	
+	public void loaningEquipmentByNumber(int equipmentnumber) {
+		for (int i=0;i<equipments.length;i++) {
+			if (equipments[i] == null || equipments[i].equals("")) {
+				break;
+			}
+			else if (equipments[i].getEquipmentNumber()==equipmentnumber) {
+				equipments[i].setReturned(false);
+				return;
+			}
+			
+			
+		}
+		System.out.println("Equipment number not found!");
+		
+	}
+	
+
 	public void saveEquipments(String txtfile) {
 		try {
 //			File myFile = new File (txtfile);

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.*;
 
 public class MainInterface {
@@ -7,13 +8,13 @@ public class MainInterface {
     	MemberArray memarray= new MemberArray("member.txt");
     	EquipmentArray eqarray= new EquipmentArray("equipment.txt");
     	Loan.loadLoans();
-    	//Loan.main2(args);
+    	//Loan.main(args);
     	
         Scanner scanner = new Scanner(System.in);
         int choice;
 
         do {
-            System.out.println("Main Menu:");
+            System.out.println("\nMain Menu:");
             System.out.println("1. Add Member");
             System.out.println("2. Add Equipment");
             System.out.println("3. Loan Equipment");
@@ -64,7 +65,7 @@ public class MainInterface {
                     int costperweek= scanner.nextInt();
                     System.out.print("Enter the activity: ");
                     //activity here
-                    String activity = Activity.main(args);
+                    String activity = Activity.selectActivity();
                     
                     eqarray.addEquipment(equipmentname, description, dateofpurchase, purchasecost, costperweekend, costperweek, activity, true);
                     
@@ -73,8 +74,8 @@ public class MainInterface {
                     break;
 
                 case 3:
-                    System.out.print("Enter equipment name to loan: ");
-                    String loanEquipmentName = scanner.nextLine();
+//                    System.out.print("Enter equipment name to loan: ");
+//                    String loanEquipmentName = scanner.nextLine();
 //                    Equipment equipmentToLoan = findEquipment(loanEquipmentName);
 //                    if (equipmentToLoan != null && !equipmentToLoan.isLoaned) {
 //                        System.out.print("Enter member name: ");
@@ -85,14 +86,14 @@ public class MainInterface {
 //                    } else {
 //                        System.out.println("Equipment not available for loan.");
 //                    }
+                	loanEquipment(memarray,eqarray);
                     break;
 
                 case 4:
                     System.out.println("Loaned Equipment:");
                     
-//                    for (LoanedItem item : loanedItems) {
-//                        System.out.println("Equipment: " + item.equipment.name + ", Loaned to: " + item.memberName);
-//                    }
+                    eqarray.displayEquipmentForLoan();
+
                     break;
 
                 case 5:
@@ -126,6 +127,116 @@ public class MainInterface {
         } while (choice != 0);
 
         scanner.close();
+    }
+    
+    private static void loanEquipment(MemberArray memberarray, EquipmentArray equipmentarray) {
+    	while(true) {
+	        Scanner scanner = new Scanner(System.in);
+	        int  equipmentNumber, memberNumber;
+	        int eqnumber, costperweekend, costperweek;
+	        String selectedmember, membername;
+	        LocalDate loanDate = null, returnDate = null;
+	        String[] equipment;
+	        
+	        while (true) {
+	            try {
+	 
+	                System.out.print("Enter loan date (yyyy-MM-dd): ");
+	                loanDate = LocalDate.parse(scanner.nextLine());
+	                System.out.println("Enter expected return date (yyyy-MM-dd): ");
+	                returnDate = LocalDate.parse(scanner.nextLine());
+	                break;
+	            } catch (Exception e) {
+	                System.out.println("Invalid date format. Please try again.");
+	                continue;
+	            }
+	        }
+	        
+	        while(true) {
+	        	String activity=Activity.selectActivity();
+		        equipmentarray.displayEquipmentByActivity(activity);
+		        System.out.print("Enter equipment number: ");
+		        equipmentNumber = scanner.nextInt();
+		        if (equipmentarray.checkActivityEquipmentNumberMatch(activity, equipmentNumber)==true) {
+		        	equipment=equipmentarray.getEquipmentNumberByNumber(equipmentNumber);
+			        if(equipment.length==0) {
+			        	System.out.println("Please enter a valid equipment number");
+			        	continue;
+			        }
+			        else {
+				        eqnumber=Integer.parseInt(equipment[0]);
+				        costperweekend=Integer.parseInt(equipment[1]);
+				        costperweek=Integer.parseInt(equipment[2]);
+			        	break;
+			        }
+		        }
+		        else {
+		        	System.out.println("No matching equipment number and activity");
+		        	continue;
+		        }
+	        }
+	       
+	        
+	        while(true) {
+		        memberarray.displayMembers();
+		        System.out.print("Enter member number: ");
+		        memberNumber = scanner.nextInt();
+		        membername=memberarray.getMemberNameByNumber(memberNumber);
+		        
+		        if (membername=="Null") {
+		        	System.out.println("Enter a valid member number.");
+		        	continue;
+		        }
+		        else {
+		        	selectedmember = memberNumber +". "+membername;
+		        	break;
+		        }
+	        }
+	
+	        int cost = Loan.calculateCost(loanDate,returnDate,costperweekend,costperweek);
+	
+	        System.out.println("\nPlease review the loan details:");
+	        System.out.println("Loan Date: " + loanDate);
+	        System.out.println("Return Date: " + returnDate);
+	        System.out.println("Equipment Number: " + eqnumber);
+	        System.out.println("Gear Officer: " + selectedmember);
+	        System.out.println("Cost: $" + cost);
+	        
+	        while(true) {
+		        System.out.print("\nConfirm your input? (yes/no): ");
+		        if (scanner.nextLine().trim().equalsIgnoreCase("yes")) {
+		        	Loan.loanEquipment(loanDate, returnDate, equipmentNumber, memberNumber, membername, cost);
+		        	equipmentarray.loaningEquipmentByNumber(eqnumber);
+		        	
+		        }
+		        else if (scanner.nextLine().trim().equalsIgnoreCase("no")) {
+		        	while(true) {
+			        	System.out.println("Redo input?\n1.Yes\n2.No(return to main-menu)");
+			        	if (scanner.nextLine().trim().equalsIgnoreCase("yes")) {
+			        		break;
+			        	}
+			        	
+			        	else if (scanner.nextLine().trim().equalsIgnoreCase("no")) {
+			        		scanner.close();
+			        		return;
+			        		
+			        	}
+			        	else {
+			        		System.out.println("Invalid input");
+			        		continue;
+			        	}		
+			        	
+		        	}
+		        	
+		        }
+		        else {
+		        	System.out.println("Invalid input");
+		        	continue;
+		        }
+		       break;
+	        }
+	        continue;
+    	}
     }
 
 

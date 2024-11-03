@@ -44,7 +44,8 @@ public class Equipment {
 	public void setReturned(Boolean returned) {this.returned = returned;}
 	public static void setNumberOfEquipment(int value) {numberofequipment=value;}
 	
-	public String displayEquipment() {return equipment_number+ ", " + name+ ", " + description + ", " + date_of_purchased + ", " + purchase_cost + ", " 
+
+	public String displayEquipmentDetail() {return equipment_number+ ", " + name+ ", " + description + ", " + date_of_purchased + ", " + purchase_cost + ", " 
 			+ hire_cost_per_weekend + ", " + hire_cost_per_week + ", " + activity + ", " + returned;}
 	
 	public String toString() { return equipment_number+ ";" + name+ ";" + description + ";" + date_of_purchased + ";" + purchase_cost + ";" 

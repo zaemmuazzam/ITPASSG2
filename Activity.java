@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 public class Activity {
-    public static String main(String[] args) {
+    public static String selectActivity() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Choose an activity:");

@@ -30,6 +30,8 @@ public class Member {
 	public String getLastName() {return last_name;}
 	public String getEmail() {return email;}
 	public String getAddress() {return address;}
+	public String getMemberFullname() {
+		return first_name+ " " + last_name;}
 	
 	/*setters*/
 	public void setMemberNumber(int member_number) {this.member_number=member_number;}
@@ -41,7 +43,9 @@ public class Member {
 	public void setEmail(String email) {this.email=email;}
 	public void setAddress(String address) {this.address=address;}
 	
-	public String displayMember() {return member_number+ ", " + first_name+ ", " + last_name + ", " + email + ", " + address + ", " 
+	public String getMember() {
+		return member_number + ". "+first_name+ " " + last_name;}
+	public String displayMemberDetail() {return member_number+ ", " + first_name+ ", " + last_name + ", " + email + ", " + address + ", " 
 			+ student_role_number + ", " + phone_number;}
 	
 	public String toString() { return member_number+ ";" + first_name+ ";" + last_name + ";" + email + ";" + address + ";" 

@@ -28,7 +28,6 @@ public class TestMenu {
 		
 	
 		eqarray.displayEquipments();
-		
 
 
 	}

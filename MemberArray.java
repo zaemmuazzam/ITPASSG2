@@ -9,7 +9,9 @@ public class MemberArray{
 		
 	
 	public MemberArray(String txtfile) {
-
+		//ArrayList<Member> members = new ArrayList<Member>();
+		
+		//Member[] members = new Member[300];
 		Member.setNumberOfMembers(0);
 		members = new Member[300];
 		int count =0;
@@ -17,14 +19,21 @@ public class MemberArray{
 		try {
 			File myFile = new File (txtfile);
 			Scanner input = new Scanner(myFile);
-	
+			//line.useDelimiter(";");
 			while(input.hasNextLine()) {
-
+//		
 //					System.out.println("Round "+count);
 					String line = input.nextLine();
 					Scanner word = new Scanner(line);
 					word.useDelimiter(";");
-					
+		//					System.out.println(membernumber);
+//					System.out.println(firstname);
+//					System.out.println(lastname);
+//					System.out.println(email );
+//					System.out.println(address);
+//					System.out.println(studentnumber);
+//					System.out.println(phonenumber);
+								
 					int membernumber = word.nextInt();
 					String firstname = word.next();
 					String lastname = word.next();
@@ -33,21 +42,15 @@ public class MemberArray{
 					int studentnumber = word.nextInt();
 					int phonenumber = word.nextInt();
 					
-//					System.out.println(membernumber);
-//					System.out.println(firstname);
-//					System.out.println(lastname);
-//					System.out.println(email );
-//					System.out.println(address);
-//					System.out.println(studentnumber);
-//					System.out.println(phonenumber);
-					
+
 					
 					Member a = new Member(membernumber,firstname,lastname,email,address,studentnumber,phonenumber);
 					//System.out.println(a.getNumberOfMembers());
 					members[a.getNumberOfMembers()-1]=a;
 					word.close();
 					
-
+					//System.out.println(data);
+				//}
 			}
 			input.close();
 			
@@ -73,12 +76,30 @@ public class MemberArray{
 	
 	public Member[] getArray() {return members;}
 	
+	public String getMemberNameByNumber(int membernumber) {
+		
+		for(int i = 0;i<members.length;i++) {
+			if(membernumber == members[i].getMemberNumber()) {
+				return members[i].getMemberFullname();
+					
+			}
+			else if (members[i] == null || members[i].equals("")) {
+				break;
+			}
+			else {
+				continue;
+			}
+
+		}
+		return "Null";
+	}
+	
 	public void displayMembers() {
 		for (int i=0;i<members.length;i++) {
 			if (members[i] == null || members[i].equals("")) {
 				break;
 			}
-			else {System.out.println(members[i].displayMember());}
+			else {System.out.println(members[i].getMember());}
 			
 		}
 	}
