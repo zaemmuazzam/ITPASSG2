@@ -54,7 +54,8 @@ public class MainInterface {
                     System.out.print("Enter name of equipment: ");
                     String equipmentname= scanner.next();
                     System.out.print("Enter description of the equipment: ");
-                    String description= scanner.next();
+                    scanner.nextLine();
+                    String description= scanner.nextLine();
                     System.out.print("Enter date of purchase (dd/mm/yyyy): ");
                     String dateofpurchase= scanner.next();
                     System.out.print("Enter purchase cost: ");
