@@ -47,7 +47,7 @@ public class MainInterface {
                     System.out.println("Member added: " +  firstname + ";"+  lastname + ";"+  email + ";"+  address + ";"
                     +  studentrollnumber + ";"+  phonenumber + ";");
                     
-                    break;
+                    continue;
 
                 case 2:
 
@@ -72,7 +72,7 @@ public class MainInterface {
                     
                     System.out.println("Equipment added: " + equipmentname + ";" + description + ";"+ dateofpurchase
                     		+ ";"+ purchasecost + ";"+ costperweekend + ";" + costperweek + ";"+ activity + ";");
-                    break;
+                    continue;
 
                 case 3:
 //                    System.out.print("Enter equipment name to loan: ");
@@ -88,14 +88,14 @@ public class MainInterface {
 //                        System.out.println("Equipment not available for loan.");
 //                    }
                 	loanEquipment(memarray,eqarray);
-                    break;
+                    continue;
 
                 case 4:
                     System.out.println("Loaned Equipment:");
                     
-                    eqarray.displayEquipmentForLoan();
+                    eqarray.displayLoanedEquipment();
 
-                    break;
+                    continue;
 
                 case 5:
                     System.out.println("Overdue Equipment:");
@@ -118,7 +118,7 @@ public class MainInterface {
 
                 case 0:
                     System.out.println("Exiting the program.");
-                    break;
+                    System.exit(0);
 
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -206,13 +206,14 @@ public class MainInterface {
 	        System.out.println("Cost: $" + cost);
 	        
 	        while(true) {
-		        System.out.print("\nConfirm your input? (yes/no): ");
+		        System.out.println("\nConfirm your input? (yes/no): ");
 		        if (scanner.nextLine().trim().equalsIgnoreCase("yes")) {
 		        	Loan.loanEquipment(loanDate, returnDate, equipmentNumber, memberNumber, membername, cost);
 		        	equipmentarray.loaningEquipmentByNumber(eqnumber);
 		        	
 		        }
 		        else if (scanner.nextLine().trim().equalsIgnoreCase("no")) {
+		        	
 		        	while(true) {
 			        	System.out.println("Redo input?\n1.Yes\n2.No(return to main-menu)");
 			        	if (scanner.nextLine().trim().equalsIgnoreCase("yes")) {
@@ -238,7 +239,8 @@ public class MainInterface {
 		        }
 		       break;
 	        }
-	        continue;
+	        scanner.close();
+	        return;
     	}
     }
 
