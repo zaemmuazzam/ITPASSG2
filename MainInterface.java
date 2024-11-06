@@ -11,7 +11,7 @@ public class MainInterface {
     	//Loan.main(args);
     	
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        int choice = -1;
 
         do {
             System.out.println("\nMain Menu:");
@@ -23,10 +23,26 @@ public class MainInterface {
             System.out.println("6. Return Equipment");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
+            
+            try {
+                choice = scanner.nextInt();  // Try reading the integer input
+                scanner.nextLine();  // Consume newline
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid choice. Please enter a number from 0 to 6.");
+                scanner.nextLine(); // Consume the invalid input
+                continue;  // Go back to the start of the loop
+            }
 
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+         // Confirm choice before proceeding
+            System.out.print("You selected option " + choice + ". Confirm? (yes/no): ");
+            String confirm = scanner.nextLine().trim();
 
+            // If confirmation is "no", restart loop to select a new choice
+            if (!confirm.equalsIgnoreCase("yes")) {
+                System.out.println("Returning to main menu.");
+                continue;
+            }
+            
             switch (choice) {
                 case 1:
                     //System.out.print("Enter member name: ");
