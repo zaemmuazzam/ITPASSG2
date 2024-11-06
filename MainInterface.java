@@ -30,18 +30,83 @@ public class MainInterface {
             switch (choice) {
                 case 1:
                     //System.out.print("Enter member name: ");
-                    System.out.print("Enter first name: ");
-                    String firstname= scanner.next();
-                    System.out.print("Enter last name: ");
-                    String lastname= scanner.next();
+					System.out.print("Enter first name: ");
+					String firstname = scanner.next();
+					
+					if (!firstname.matches("[a-zA-Z]+")) {
+						System.out.println("Invalid first name. Please enter a name containing only letters.");
+						continue;
+					}
+					
+					System.out.print("Enter last name: ");
+					String lastname = scanner.next();
+					
+					if (!lastname.matches("[a-zA-Z]+")) {
+						System.out.println("Invalid last name. Please enter a name containing only letters.");
+						continue;
+					}
+
+
                     System.out.print("Enter email: ");
-                    String email= scanner.next();
-                    System.out.print("Enter address: ");
-                    String address= scanner.next();
-                    System.out.print("Enter student roll number: ");
-                    int studentrollnumber= scanner.nextInt();
-                    System.out.print("Enter phone number: ");
-                    int phonenumber= scanner.nextInt();
+					scanner.nextLine();
+
+                    String email= scanner.nextLine();
+
+					if (!isValidEmailUTB(email)) {
+						System.out.println("Invalid email. Email must contain '@utb.edu.bn'. Please re-enter:");
+						continue;
+					}
+
+
+					System.out.print("Enter address: ");
+					// scanner.nextLine();
+					String address = scanner.nextLine();
+
+					int studentrollnumber;
+
+
+
+
+
+					if (email.contains("@staff.utb.edu.bn")) {
+						System.out.print("Enter staff ID (SXXXXXXXXX): ");
+						String staffId = scanner.next();
+
+						if (!staffId.matches("S\\d{8}")) {
+							System.out.println("Invalid staff ID. Please enter a valid ID starting with 'S' followed by 8 digits.");
+							continue;
+						}
+
+						// Parse the staff ID (assuming you need the numeric part)
+						studentrollnumber = Integer.parseInt(staffId.substring(1));
+					} else {
+						System.out.print("Enter student ID (BXXXXXXXXX, MXXXXXXXXX, or PXXXXXXXXX): ");
+						String studentId = scanner.next();
+
+						if (!studentId.matches("[BMP]\\d{8}")) {
+							System.out.println("Invalid student ID. Please enter a valid ID starting with 'B', 'M', or 'P' followed by 8 digits.");
+							continue;
+						}
+
+						// Parse the student ID (assuming you need the numeric part)
+						studentrollnumber = Integer.parseInt(studentId.substring(1));
+					}
+                    // System.out.print("Enter student roll number: ");
+                    // int studentrollnumber= scanner.nextInt();
+					System.out.print("Enter phone number: ");
+					String phoneNumberStr = scanner.next();
+					
+					if (phoneNumberStr.length() != 7 || !phoneNumberStr.matches("\\d+")) {
+						System.out.println("Invalid phone number. Please enter a 7-digit number.");
+						continue;
+					}
+					
+					int phonenumber = Integer.parseInt(phoneNumberStr);
+
+
+
+
+
                     memarray.addMember(firstname, lastname, email, address, studentrollnumber, phonenumber);
                     
                     System.out.println("Member added: " +  firstname + ";"+  lastname + ";"+  email + ";"+  address + ";"
@@ -128,6 +193,12 @@ public class MainInterface {
         } while (choice != 0);
 
         scanner.close();
+    }
+
+	private static boolean isValidEmailUTB(String email) {
+		// return email.matches("^[^@]+@(?:staff|student)?\\.utb\\.edu\\.bn$");
+		return email.matches("^[^\\s@]+@(?:staff|student)?\\.utb\\.edu\\.bn$");
+
     }
     
     private static void loanEquipment(MemberArray memberarray, EquipmentArray equipmentarray) {
