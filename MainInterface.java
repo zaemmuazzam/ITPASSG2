@@ -30,78 +30,100 @@ public class MainInterface {
             switch (choice) {
                 case 1:
                     //System.out.print("Enter member name: ");
-					System.out.print("Enter first name: ");
-					String firstname = scanner.next();
+					String firstname;
+					String lastname;
+					do {
+						System.out.print("Enter first name: ");
+						firstname = scanner.nextLine();
 					
-					if (!firstname.matches("[a-zA-Z]+")) {
-						System.out.println("Invalid first name. Please enter a name containing only letters.");
-						continue;
-					}
+						if (!firstname.matches("[a-zA-Z]+")) {
+							System.out.println("Invalid first name. Please enter a name containing only letters.");
+						} else {
+							break; // Exit the loop if the first name is valid
+						}
+					} while (true);
+				
+					do {
+						System.out.print("Enter last name: ");
+						lastname = scanner.next();
+
+						if (!lastname.matches("[a-zA-Z]+")) {
+							System.out.println("Invalid last name. Please enter a name containing only letters.");
+						} else {
+							break; // Exit the loop if the last name is valid
+						}
+					} while (true);
+
+
+					String email;
+
+					do {
+						System.out.print("Enter email: ");
+						// scanner.nextLine();
+						email = scanner.next();
 					
-					System.out.print("Enter last name: ");
-					String lastname = scanner.next();
-					
-					if (!lastname.matches("[a-zA-Z]+")) {
-						System.out.println("Invalid last name. Please enter a name containing only letters.");
-						continue;
-					}
-
-
-                    System.out.print("Enter email: ");
-					scanner.nextLine();
-
-                    String email= scanner.nextLine();
-
-					if (!isValidEmailUTB(email)) {
-						System.out.println("Invalid email. Email must contain '@utb.edu.bn'. Please re-enter:");
-						continue;
-					}
+						if (!isValidEmailUTB(email)) {
+							System.out.println("Invalid email. Email must contain '@utb.edu.bn'. Please re-enter:");
+						} else {
+							break; // Exit the loop if the email is valid
+						}
+					} while (true);
 
 
 					System.out.print("Enter address: ");
 					// scanner.nextLine();
 					String address = scanner.nextLine();
-
+					String staffId;
 					int studentrollnumber;
-
-
-
-
-
+					
 					if (email.contains("@staff.utb.edu.bn")) {
-						System.out.print("Enter staff ID (SXXXXXXXXX): ");
-						String staffId = scanner.next();
-
-						if (!staffId.matches("S\\d{8}")) {
-							System.out.println("Invalid staff ID. Please enter a valid ID starting with 'S' followed by 8 digits.");
-							continue;
-						}
-
+						do {
+							System.out.print("Enter staff ID (SXXXXXXXXX): ");
+							staffId = scanner.next().toUpperCase(); // Convert to uppercase
+					
+							if (!staffId.matches("S\\d{8}")) {
+								System.out.println("Invalid staff ID. Please enter a valid ID starting with 'S' followed by 8 digits.");
+							} else {
+								break; // Exit the loop if the staff ID is valid
+							}
+						} while (true);
+					
 						// Parse the staff ID (assuming you need the numeric part)
 						studentrollnumber = Integer.parseInt(staffId.substring(1));
 					} else {
-						System.out.print("Enter student ID (BXXXXXXXXX, MXXXXXXXXX, or PXXXXXXXXX): ");
-						String studentId = scanner.next();
-
-						if (!studentId.matches("[BMP]\\d{8}")) {
-							System.out.println("Invalid student ID. Please enter a valid ID starting with 'B', 'M', or 'P' followed by 8 digits.");
-							continue;
-						}
-
+						String studentId;
+					
+						do {
+							System.out.print("Enter student ID (BXXXXXXXXX, MXXXXXXXXX, or PXXXXXXXXX): ");
+							studentId = scanner.next().toUpperCase(); // Convert to uppercase
+					
+							if (!studentId.matches("[BMP]\\d{8}")) {
+								System.out.println("Invalid student ID. Please enter a valid ID starting with 'B', 'M', or 'P' followed by 8 digits.");
+							} else {
+								break; // Exit the loop if the student ID is valid
+							}
+						} while (true);
+					
 						// Parse the student ID (assuming you need the numeric part)
 						studentrollnumber = Integer.parseInt(studentId.substring(1));
 					}
                     // System.out.print("Enter student roll number: ");
                     // int studentrollnumber= scanner.nextInt();
-					System.out.print("Enter phone number: ");
-					String phoneNumberStr = scanner.next();
+					String phoneNumberStr;
+					int phonenumber;
 					
-					if (phoneNumberStr.length() != 7 || !phoneNumberStr.matches("\\d+")) {
-						System.out.println("Invalid phone number. Please enter a 7-digit number.");
-						continue;
-					}
+					do {
+						System.out.print("Enter phone number: ");
+						phoneNumberStr = scanner.next();
 					
-					int phonenumber = Integer.parseInt(phoneNumberStr);
+						if (phoneNumberStr.length() != 7 || !phoneNumberStr.matches("\\d+")) {
+							System.out.println("Invalid phone number. Please enter a 7-digit number.");
+						} else {
+							break; // Exit the loop if the phone number is valid
+						}
+					} while (true);
+					
+					phonenumber = Integer.parseInt(phoneNumberStr);
 
 
 
