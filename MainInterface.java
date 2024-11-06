@@ -201,10 +201,9 @@ public class MainInterface {
                     continue;
 
                 case 5:
-                    System.out.println("Overdue Equipment:");
-                    // Placeholder for overdue logic (not implemented)
-                    System.out.println("This feature is not implemented yet.");
-                    break;
+ 
+                	loanEquipment(memarray,eqarray);
+                    continue;
 
                 case 6:
                     System.out.print("Enter equipment name to return: ");
