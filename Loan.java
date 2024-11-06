@@ -28,6 +28,56 @@ public class Loan {
         this.cost = cost;
         
     }
+    
+    //getters
+    public LocalDate getReturnDate() {return returnDate;}
+    public int getEquipmentNumber() {return Integer.parseInt(equipmentNumber);}
+    public String getLoanNumber() {return loanNumber;}
+    public String getGearOfficer() {return gearofficer;}
+    
+    
+    
+    public static boolean isOverdue(Loan loan, LocalDate currentDate) {
+    	//System.out.println(loan); 
+    	if (loan.getReturnDate().isBefore(currentDate)==true) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
+    public static void listOverdue(EquipmentArray equipmentarray, LocalDate currentDate) {
+    	
+    	System.out.println("\nAs of the current date: "+currentDate);
+    	
+    	System.out.println("\nThese equipment are overdue: ");
+    	
+    	System.out.println("Equipment no, Equipment name, Description, Activity, Loan no, Expected return date, Gearofficer");
+
+    	
+    	for(int i=0;i<loans.length;i++) {
+   		 	if (loans[i] == null || loans[i].equals("")) {
+				return;
+   		 	} else {
+	    		if ((loans[i].getReturnDate().isBefore(currentDate))==true) { 
+	    			Equipment item = equipmentarray.getEquipmentByNumber(loans[i].getEquipmentNumber());
+	    			if ((item.getReturned())==false) {
+	    			
+	    				System.out.println(item.getEquipmentNumber()+ "  " + item.getName()+ "	" +item.getDescription()+ "  " + item.getActivity()
+	    				+ " "+ loans[i].getLoanNumber()+ "  "+loans[i].getReturnDate()+ "  "+loans[i].getGearOfficer());
+	    			}
+	    			else {
+	    				continue;
+	    			}
+	    			
+	    		}
+   		 	}
+    	}
+    	
+    	
+    	
+    }
 
     // Method to calculate loan cost based on the duration
     public static int calculateCost(LocalDate loanDate, LocalDate returnDate,int hirecostperweekend, int hirecostperweek) {

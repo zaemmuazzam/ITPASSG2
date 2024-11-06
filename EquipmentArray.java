@@ -96,6 +96,10 @@ public class EquipmentArray {
 		
 	}
 	
+	public Equipment getEquipmentByNumber(int number) {
+		return equipments[number];	
+	}
+	
 	
 	public void displayEquipmentForLoan() {
 		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
