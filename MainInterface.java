@@ -5,6 +5,7 @@ public class MainInterface {
 
 
     public static void main(String[] args) {
+    	LocalDate currentdate =LocalDate.parse("2024-09-25");
     	MemberArray memarray= new MemberArray("member.txt");
     	EquipmentArray eqarray= new EquipmentArray("equipment.txt");
     	Loan.loadLoans();
@@ -197,12 +198,17 @@ public class MainInterface {
                     System.out.println("Loaned Equipment:");
                     
                     eqarray.displayLoanedEquipment();
+                    //for testing
+//                    System.out.println();
+//                    eqarray.displayEquipments(); 
+//                    System.out.println();
+//                    Loan.viewLoans();
 
                     continue;
 
                 case 5:
  
-                	loanEquipment(memarray,eqarray);
+                	Loan.listOverdue(eqarray,currentdate);
                     continue;
 
                 case 6:
@@ -311,6 +317,8 @@ public class MainInterface {
 	        System.out.println("Loan Date: " + loanDate);
 	        System.out.println("Return Date: " + returnDate);
 	        System.out.println("Equipment Number: " + eqnumber);
+	        System.out.println("Equipment Name: " + (equipmentarray.getEquipmentByNumber(eqnumber)).getName());
+	        System.out.println("Activity: " + (equipmentarray.getEquipmentByNumber(eqnumber)).getActivity());
 	        System.out.println("Gear Officer: " + selectedmember);
 	        System.out.println("Cost: $" + cost);
 	        
@@ -321,6 +329,7 @@ public class MainInterface {
 		        if (confirmation.equalsIgnoreCase("yes")) {
 		        	Loan.loanEquipment(loanDate, returnDate, equipmentNumber, memberNumber, membername, cost);
 		        	equipmentarray.loaningEquipmentByNumber(eqnumber);
+		        	return;
 		        	
 		        }
 		        else if (confirmation.trim().equalsIgnoreCase("no")) {

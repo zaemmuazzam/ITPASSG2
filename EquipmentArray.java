@@ -115,14 +115,14 @@ public class EquipmentArray {
 		
 	}
 	public void displayLoanedEquipment() {
-		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
+		System.out.println("Equipment no, Equipment name, Description, Activity, Cost weekend, Cost per week");
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
 				break;
 			}
 			else if (equipments[i].getReturned() == false) {
 				System.out.println(equipments[i].getEquipmentNumber()+", "+equipments[i].getName()
-						+", "+equipments[i].getDescription()+", $"+equipments[i].getHireCostPerWeekend()
+						+", "+equipments[i].getDescription()+", "+equipments[i].getActivity()+", $"+equipments[i].getHireCostPerWeekend()
 						+", $"+equipments[i].getHireCostPerWeek());}
 			}
 		

@@ -36,7 +36,6 @@ public class Loan {
     public String getGearOfficer() {return gearofficer;}
     
     
-    
     public static boolean isOverdue(Loan loan, LocalDate currentDate) {
     	//System.out.println(loan); 
     	if (loan.getReturnDate().isBefore(currentDate)==true) {
@@ -61,7 +60,9 @@ public class Loan {
 				return;
    		 	} else {
 	    		if ((loans[i].getReturnDate().isBefore(currentDate))==true) { 
+	    			
 	    			Equipment item = equipmentarray.getEquipmentByNumber(loans[i].getEquipmentNumber());
+	    			
 	    			if ((item.getReturned())==false) {
 	    			
 	    				System.out.println(item.getEquipmentNumber()+ "  " + item.getName()+ "	" +item.getDescription()+ "  " + item.getActivity()
@@ -233,13 +234,14 @@ public class Loan {
 //        if (scanner.nextLine().trim().equalsIgnoreCase("yes")) {
     
             if (loanCount < loans.length) {
-            	loanCount++;
+            	
             	String loannumber = Integer.toString(loanCount);
             	String eqnumber = Integer.toString(equipmentNumber);
             	String memnumber = Integer.toString(memberNumber);
             	Double cost = (double) hirecost;
     
                 loans[loanCount] = new Loan(loannumber, loanDate, returnDate, eqnumber, memnumber,gearofficer, cost);
+                loanCount++;
                 System.out.println("Loan successfully added.");
             } else {
                 System.out.println("Loan storage is full.");
