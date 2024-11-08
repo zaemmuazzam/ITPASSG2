@@ -3,14 +3,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+
 public class EquipmentArray {
 	private Equipment[] equipments;
-		
+	private ArrayList<Equipment> equipmentList;
 	
-	public EquipmentArray(String txtfile) {
+	    public EquipmentArray(String txtfile) {
 
 		Equipment.setNumberOfEquipment(0);
 		equipments = new Equipment[300];
+		equipmentList = new ArrayList<>();
 		int count =0;
 		
 		try {
@@ -49,6 +52,7 @@ public class EquipmentArray {
 					Equipment a = new Equipment(equipment_number,name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
 					//System.out.println(a.getNumberOfEquipment());
 					equipments[a.getNumberOfEquipment()-1]=a;
+					equipmentList.add(a);
 					word.close();
 					
 					//System.out.println(data);
@@ -126,6 +130,19 @@ public class EquipmentArray {
 						+", $"+equipments[i].getHireCostPerWeek());}
 			}
 		
+	}
+	
+	public void returnEquipmentByNumber(int equipmentNumber) {
+	    for (int i = 0; i < equipments.length; i++) {
+	        if (equipments[i] == null || equipments[i].equals("")) {
+	            break;
+	        } else if (equipments[i].getEquipmentNumber() == equipmentNumber) {
+	            equipments[i].setReturned(true); // Mark as returned
+	            System.out.println("Equipment " + equipmentNumber + " has been marked as returned.");
+	            return;
+	        }
+	    }
+	    System.out.println("Equipment number " + equipmentNumber + " not found.");
 	}
 	
 	public void displayEquipments() {
@@ -220,4 +237,22 @@ public class EquipmentArray {
 	}
 
 
+
+
+public Equipment findLoanedEquipmentByNameOrNumber(String nameOrNumber) {
+    for (Equipment equipment : equipmentList) {
+        if (equipment.getName().equalsIgnoreCase(nameOrNumber) || 
+            String.valueOf(equipment.getEquipmentNumber()).equals(nameOrNumber)) {
+            return equipment;
+        }
+    }
+    return null; // Return null if no matching equipment is found
 }
+
+// Method to add equipment to the list (for testing and usage purposes)
+public void addEquipment(Equipment equipment) {
+    equipmentList.add(equipment);
+}
+}
+
+
