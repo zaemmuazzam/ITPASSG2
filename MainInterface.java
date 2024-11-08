@@ -142,10 +142,6 @@ public class MainInterface {
 					
 					phonenumber = Integer.parseInt(phoneNumberStr);
 
-
-
-
-
                     memarray.addMember(firstname, lastname, email, address, studentrollnumber, phonenumber);
                     
                     System.out.println("Member added: " +  firstname + ";"+  lastname + ";"+  email + ";"+  address + ";"
@@ -179,6 +175,7 @@ public class MainInterface {
                     continue;
 
                 case 3:
+                	
 //                    System.out.print("Enter equipment name to loan: ");
 //                    String loanEquipmentName = scanner.nextLine();
 //                    Equipment equipmentToLoan = findEquipment(loanEquipmentName);
@@ -212,7 +209,8 @@ public class MainInterface {
                     continue;
 
                 case 6:
-                    System.out.print("Enter equipment name to return: ");
+                	 returnEquipment(eqarray, scanner);
+                	 continue;
 //                    String returnEquipmentName = scanner.nextLine();
 //                    LoanedItem itemToReturn = findLoanedItem(returnEquipmentName);
 //                    if (itemToReturn != null) {
@@ -222,7 +220,7 @@ public class MainInterface {
 //                    } else {
 //                        System.out.println("No loaned equipment found with that name.");
 //                    }
-                    break;
+                    
 
                 case 0:
                     System.out.println("Exiting the program.");
@@ -365,5 +363,49 @@ public class MainInterface {
     	}
     }
 
+    private static void returnEquipment(EquipmentArray eqarray, Scanner scanner) {
+        try {
+            boolean validInput = false;
+            int equipmentNumber = -1;
+            
+            // Loop until valid equipment number is entered
+            while (!validInput) {
+                System.out.print("Enter the equipment number you want to return: ");
+                if (scanner.hasNextInt()) {
+                    equipmentNumber = scanner.nextInt();
+                    validInput = true; // valid input, break the loop
+                } else {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                    scanner.nextLine(); // Clear the invalid input
+                }
+            }
 
+            // Find the equipment by number
+            String[] equipment = eqarray.getEquipmentNumberByNumber(equipmentNumber);
+            if (equipment.length == 0) {
+                System.out.println("Invalid equipment number. Please try again.");
+                return;
+            }
+
+            // Ask for confirmation before returning the equipment
+            System.out.println("Are you sure you want to return the following equipment?");
+            System.out.println("Equipment Number: " + equipment[0]);
+            System.out.println("Equipment Name: " + eqarray.getEquipmentByNumber(Integer.parseInt(equipment[0])).getName());
+            System.out.print("Confirm return? (yes/no): ");
+            scanner.nextLine();  // Consume any leftover newline
+            String confirmReturn = scanner.nextLine().trim();
+            
+            if (confirmReturn.equalsIgnoreCase("yes")) {
+                // Proceed with returning the equipment
+                eqarray.returnEquipmentByNumber(Integer.parseInt(equipment[0]));
+                System.out.println("Equipment returned successfully.");
+            } else {
+                System.out.println("Equipment return canceled.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
 }
