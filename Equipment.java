@@ -4,6 +4,7 @@ public class Equipment {
 	private int equipment_number, purchase_cost, hire_cost_per_weekend, hire_cost_per_week;
 	private Boolean returned;
 	private static int numberofequipment=0;
+	private Boolean isLoaned;
 	
 	public Equipment(int equipment_number, String name, String description, String date_of_purchased, int purchase_cost, 
 			int hire_cost_per_weekend, int hire_cost_per_week, String activity, Boolean returned) {
@@ -19,6 +20,8 @@ public class Equipment {
 		
 		numberofequipment++;
 	}
+	
+	
 	
 	//Getters
 	public String getName() {return name;}
@@ -43,6 +46,9 @@ public class Equipment {
 	public void setHireCostPerWeek(int hire_cost_per_week) {this.hire_cost_per_week = hire_cost_per_week;}
 	public void setReturned(Boolean returned) {this.returned = returned;}
 	public static void setNumberOfEquipment(int value) {numberofequipment=value;}
+	public void setLoaned(boolean loaned) {
+	    this.isLoaned = !loaned;
+	}
 	
 
 	public String displayEquipmentDetail() {return equipment_number+ ", " + name+ ", " + description + ", " + date_of_purchased + ", " + purchase_cost + ", " 
