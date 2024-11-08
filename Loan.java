@@ -2,8 +2,10 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Loan {
+	private ArrayList<Equipment> loanedEquipmentList;
     private String loanNumber;
     private LocalDate loanDate;
     private LocalDate returnDate;
@@ -11,7 +13,15 @@ public class Loan {
     private String memberNumber;
     private String gearofficer;
     private double cost;
-
+    private Boolean isLoaned;
+    
+    
+    
+    public Loan() {
+        loanedEquipmentList = new ArrayList<>();
+    }
+    
+    
     private static Loan[] loans = new Loan[300]; // Fixed-size array of 300 elements
     private static int loanCount = 0; // Track the number of loans added
 
@@ -332,4 +342,21 @@ public class Loan {
 //            }
 //        } while (choice != 4);
 //    }
+
+
+public void addLoan(Equipment equipment) {
+    loanedEquipmentList.add(equipment);
 }
+
+// Method to remove equipment from loan
+public void removeLoan(Equipment equipment) {
+    if (loanedEquipmentList.remove(equipment)) {
+        System.out.println("Loan removed for equipment: " + equipment.getName());
+    } else {
+        System.out.println("Equipment not found in the loaned list.");
+        
+    }
+    
+}
+}
+
