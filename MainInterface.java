@@ -253,17 +253,26 @@ public class MainInterface {
 	        
 	        while (true) {
 	            try {
-
 	                System.out.print("\nEnter loan date (yyyy-MM-dd): ");
 	                loanDate = LocalDate.parse(scanner.next());
-	                System.out.println("Enter expected return date (yyyy-MM-dd): ");
-	                returnDate = LocalDate.parse(scanner.next());
-	                break;
+
+	                // Validate the return date to ensure it's after the loan date
+	                while (true) {
+	                    System.out.print("Enter expected return date (yyyy-MM-dd): ");
+	                    returnDate = LocalDate.parse(scanner.next());
+
+	                    if (!returnDate.isBefore(loanDate)) {
+	                        break;  // If the return date is valid, break the loop
+	                    } else {
+	                        System.out.println("Return date cannot be before loan date. Please enter a valid return date.");
+	                    }
+	                }
+	                break;  // Exit the main date validation loop if all dates are valid
 	            } catch (Exception e) {
 	                System.out.println("Invalid date format. Please try again.");
-	                continue;
 	            }
 	        }
+
 	        
 	        while(true) {
 	      
