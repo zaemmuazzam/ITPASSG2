@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Activity {
     public static String selectActivity() {
         Scanner scanner = new Scanner(System.in);
-
+// prints out the different options
         System.out.println("Choose an activity:");
         System.out.println("0. Rock Climbing");
         System.out.println("1. Hiking");

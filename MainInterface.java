@@ -80,7 +80,7 @@ public class MainInterface {
 						email = scanner.next();
 					
 						if (!isValidEmailUTB(email)) {
-							System.out.println("Invalid email. Email must contain '@utb.edu.bn'. Please re-enter:");
+							System.out.println("Invalid email. Email must contain '@student.utb.edu.bn' or '@staff.utb.edu.bn'. Please re-enter:");
 						} else {
 							break; // Exit the loop if the email is valid
 						}
@@ -222,7 +222,7 @@ public class MainInterface {
     }
 
 	private static boolean isValidEmailUTB(String email) {
-		// return email.matches("^[^@]+@(?:staff|student)?\\.utb\\.edu\\.bn$");
+		// checks email to ensure it contains the correct student or staff email
 		return email.matches("^[^\\s@]+@(?:staff|student)?\\.utb\\.edu\\.bn$");
 
     }
