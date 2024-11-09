@@ -260,10 +260,18 @@ public class MainInterface {
 
 	        
 	        while(true) {
-	      
-	        	String activity=Activity.selectActivity();
-	        	
-		        equipmentarray.displayEquipmentByActivity(activity);
+	        	String activity;
+	        	while(true) {
+		        	activity=Activity.selectActivity();
+			        if (equipmentarray.displayEquipmentByActivity(activity)==false) {
+			        	System.out.println("There are no loanable equipment for that activity. Please select another activity.");
+			        	continue;
+			        } else {
+			        	break;
+			        	
+			        }
+		        	
+		        }
 		        System.out.print("Enter equipment number: ");
 		        equipmentNumber = scanner.nextInt();
 		        if (equipmentarray.checkActivityEquipmentNumberMatch(activity, equipmentNumber)) {

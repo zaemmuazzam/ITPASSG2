@@ -37,7 +37,7 @@ public class Activity {
                 break;
             case 4:
                 System.out.println("You chose Mountain Biking.");
-                activity="biking";
+                activity="mountain biking";
                 break;
             case 5:
                 System.out.println("You chose Paddling.");

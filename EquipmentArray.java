@@ -158,7 +158,7 @@ public class EquipmentArray {
 		
 	}
 
-	//Returning an equipment according to the specificed equipment number
+	//Returning an equipment according to the specified equipment number
 	public void returnEquipmentByNumber(int equipmentNumber) {
 	    for (int i = 0; i < equipments.length; i++) {
 	        if (equipments[i] == null || equipments[i].equals("")) {
@@ -188,8 +188,19 @@ public class EquipmentArray {
 		equipments[a.getNumberOfEquipment()-1]=a;
 		
 	}
-	//Display all equipments which matches the scpecified
-	public void displayEquipmentByActivity(String activity) {
+	//Display all equipments which matches the specified
+	public boolean displayEquipmentByActivity(String activity) {
+		for (int i=0;i<equipments.length;i++) {
+			if (equipments[i] == null || equipments[i].equals("")) {
+				return false;
+			}
+			else if ((equipments[i].getActivity()).equalsIgnoreCase(activity)&&equipments[i].getReturned() == true) {
+				break;
+
+			}
+			
+		}
+		
 		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
@@ -200,9 +211,10 @@ public class EquipmentArray {
 						+", "+equipments[i].getDescription()+", $"+equipments[i].getHireCostPerWeekend()
 						+", $"+equipments[i].getHireCostPerWeek());}
 			}
-			
-		}
-		//checks equipment according to activit
+			return true;	
+	}
+	
+		//checks equipment according to activities
 	public boolean checkActivityEquipmentNumberMatch(String activity, int equipmentnumber) {
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
@@ -236,13 +248,12 @@ public class EquipmentArray {
 //Saving array to equipments.txt 
 	public void saveEquipments(String txtfile) {
 		try {
-//			File myFile = new File (txtfile);
-//			FileWriter writer= new FileWriter(myFile, false);
+
 			FileWriter writer= new FileWriter(txtfile, false);
 			writer.write("");
 			writer.close();
 			
-//			writer = new FileWriter(myFile, true);
+
 			writer= new FileWriter(txtfile, true);
 			for (int i=0;i<equipments.length;i++) {
 				if (equipments[i] == null || equipments[i].equals("")) {
