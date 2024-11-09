@@ -1,3 +1,8 @@
+// Team:
+// Fa’izah B20240050
+// Hidayat b20240386
+// zaem b20240387
+// Asyraf B20240436
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -9,60 +14,73 @@ public class EquipmentArray {
 		
 	//When Equipment array is instantiated an array of equipment members is created
 	    public EquipmentArray(String txtfile) {
+	    	File myFile;
+			String path;
+			Scanner input;
+			path = txtfile;
+			Equipment.setNumberOfEquipment(0);
+			equipments = new Equipment[300];
+			int count =0;
+	    	while(true) {
+			
+				try {//Equipment.txt is opened 
+					myFile = new File (path);
+					input = new Scanner(myFile);
+					while(input.hasNextLine()) { //and the records are loaded one line at a time into the array as equipment objects
 
-		Equipment.setNumberOfEquipment(0);
-		equipments = new Equipment[300];
-		int count =0;
+						String line = input.nextLine();
+						Scanner word = new Scanner(line);
+						word.useDelimiter(";");
+									
+						int equipment_number = word.nextInt();
+						String name = word.next();
+						String description = word.next();
+						String date_of_purchased = word.next();
+						int purchase_cost = word.nextInt();
+						int hire_cost_per_weekend = word.nextInt();
+						int hire_cost_per_week = word.nextInt();
+						String activity = word.next();
+						Boolean returned = Boolean.parseBoolean(word.next());
+						
+						
+						
+						Equipment a = new Equipment(equipment_number,name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
+
+						equipments[a.getNumberOfEquipment()-1]=a;
+						word.close();
+			
+					}
+
+					for(int i=0;i<equipments.length;i++) {
+						if (equipments[i] == null || equipments[i].equals("")) {
+							break;
+						}
+						else {count+=1;}
+						
+						
+					}
+					System.out.println("Loaded "+count+" equipment");
+					return;
+			    }
+
+				catch (FileNotFoundException e) { //in case equipment.txt is not found the in  same directory as the java files, the user can state the location of the text file
+					System.out.println("equipment.txt not found");
+					Scanner pathtxt = new Scanner(System.in);
+					System.out.println("Please state the file path to equipment.txt (Example = C:\\Users\\USER\\Desktop\\folderexample\\equipment.txt): ");
+					String x=pathtxt.nextLine();
+
 		
-		try {//Equipment.txt is opened 
-			File myFile = new File (txtfile);
-			Scanner input = new Scanner(myFile);
-			
-			while(input.hasNextLine()) { //and the records are loaded one line at a time into the array as equipment objects
+					x.replace("\\","/");
+					x.replace("C:","");
+					path = x;
 
-					String line = input.nextLine();
-					Scanner word = new Scanner(line);
-					word.useDelimiter(";");
-								
-					int equipment_number = word.nextInt();
-					String name = word.next();
-					String description = word.next();
-					String date_of_purchased = word.next();
-					int purchase_cost = word.nextInt();
-					int hire_cost_per_weekend = word.nextInt();
-					int hire_cost_per_week = word.nextInt();
-					String activity = word.next();
-					Boolean returned = Boolean.parseBoolean(word.next());
-					
-					
-					
-					Equipment a = new Equipment(equipment_number,name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
-
-					equipments[a.getNumberOfEquipment()-1]=a;
-					word.close();
-
-			}
-			input.close();
-			
-			for(int i=0;i<equipments.length;i++) {
-				if (equipments[i] == null || equipments[i].equals("")) {
-					break;
+					continue;
 				}
-				else {count+=1;}
-				
-				
-			}
-			System.out.println("Loaded "+count+" equipment");
-			
+	    	}
+	    }
 
-		}
-		catch (FileNotFoundException e) {
-		System.out.println("An error has occured");
-		e.printStackTrace();
-		}
 
-		
-	}
+
 	
 	    //For getting a equipments array itself 
 	public Equipment[] getArray() {return equipments;}
