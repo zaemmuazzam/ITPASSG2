@@ -52,7 +52,7 @@ public class MainInterface {
 					do {
 						System.out.print("Enter first name: ");
 						firstname = scanner.nextLine();
-					
+					// ensures it only contains letters
 						if (!firstname.matches("[a-zA-Z]+")) {
 							System.out.println("Invalid first name. Please enter a name containing only letters.");
 						} else {
@@ -63,7 +63,7 @@ public class MainInterface {
 					do {
 						System.out.print("Enter last name: ");
 						lastname = scanner.next();
-
+					// ensures it only contains letters
 						if (!lastname.matches("[a-zA-Z]+")) {
 							System.out.println("Invalid last name. Please enter a name containing only letters.");
 						} else {
@@ -78,7 +78,7 @@ public class MainInterface {
 						System.out.print("Enter email: ");
 						// scanner.nextLine();
 						email = scanner.next();
-					
+					// ensures it is a valid school email
 						if (!isValidEmailUTB(email)) {
 							System.out.println("Invalid email. Email must contain '@student.utb.edu.bn' or '@staff.utb.edu.bn'. Please re-enter:");
 						} else {
@@ -92,12 +92,12 @@ public class MainInterface {
 					String address = scanner.nextLine();
 					String staffId;
 					int studentrollnumber;
-					
+					// if a staff member is registering, it will ask for a different type of ID
 					if (email.contains("@staff.utb.edu.bn")) {
 						do {
 							System.out.print("Enter staff ID (SXXXXXXXXX): ");
 							staffId = scanner.next().toUpperCase(); // Convert to uppercase
-					
+					// only the appropriate ID will work for staff
 							if (!staffId.matches("S\\d{8}")) {
 								System.out.println("Invalid staff ID. Please enter a valid ID starting with 'S' followed by 8 digits.");
 							} else {
@@ -109,7 +109,7 @@ public class MainInterface {
 						studentrollnumber = Integer.parseInt(staffId.substring(1));
 					} else {
 						String studentId;
-					
+					// if student is registering, it will only ask for ID belonging to students.
 						do {
 							System.out.print("Enter student ID (BXXXXXXXXX, MXXXXXXXXX, or PXXXXXXXXX): ");
 							studentId = scanner.next().toUpperCase(); // Convert to uppercase
@@ -132,7 +132,7 @@ public class MainInterface {
 					do {
 						System.out.print("Enter phone number: ");
 						phoneNumberStr = scanner.next();
-					
+					// ensures it only accepts 7 digit phone numbers.
 						if (phoneNumberStr.length() != 7 || !phoneNumberStr.matches("\\d+")) {
 							System.out.println("Invalid phone number. Please enter a 7-digit number.");
 						} else {
@@ -143,7 +143,7 @@ public class MainInterface {
 					phonenumber = Integer.parseInt(phoneNumberStr);
 
                     memarray.addMember(firstname, lastname, email, address, studentrollnumber, phonenumber);
-                    
+                    // prints out the filled out details. 
                     System.out.println("Member added: " +  firstname + ";"+  lastname + ";"+  email + ";"+  address + ";"
                     +  studentrollnumber + ";"+  phonenumber + ";");
                     
