@@ -101,64 +101,65 @@ public class Loan {
     public static void setLoanCount(int number) {loanCount=number;} 
     // Load loans from file
     public static void loadLoans() {
+	   	File myFile;
+		String path = "loan.txt";
+		Scanner input;
+		
 
     	setLoanCount(0);
-    	try {
-    		File myFile = new File ("loan.txt");
-    		Scanner input = new Scanner(myFile);
-    		int count=0;
-		
-    		
-			while(input.hasNextLine()) {
-				String line = input.nextLine();
-				//System.out.println(line);
-				Scanner word = new Scanner(line);
-				word.useDelimiter(";");
-				
-				String loannumber = word.next();
-//				System.out.println(loannumber);
-				LocalDate loandate = LocalDate.parse(word.next());
-//				System.out.println(loandate);
-				LocalDate returndate = LocalDate.parse(word.next());
-//				System.out.println(returndate);
-				String equipmentnumber = word.next();
-//				System.out.println(equipmentnumber);
-				String membernumber = word.next();
-//				System.out.println(membernumber);
-				String gearofficer = word.next();
-				//System.out.println(gearofficer);
-				double cost = word.nextDouble();
-//				System.out.println(cost);
-				
-//				System.out.println(loannumber);
-//				System.out.println(loandate);
-//				System.out.println(returndate);
-//				System.out.println(equipmentnumber);
-//				System.out.println(membernumber);
-//				System.out.println(gearofficer);
-//				System.out.println(cost);
-				
-				
-		        Loan loan = new Loan(loannumber, loandate, returndate,equipmentnumber, membernumber,gearofficer, cost);
-		  		loans[loanCount] = loan;
-		  		loanCount++;
-		  		word.close();
-			}
+    	while(true) {
+	    	try {
+	    		myFile = new File (path);
+	    		input = new Scanner(myFile);
+	    		int count=0;
 			
-			for(int i=0;i<loans.length;i++) {
-				if (loans[i] == null || loans[i].equals("")) {
-					break;
+	    		
+				while(input.hasNextLine()) {
+					String line = input.nextLine();
+					//System.out.println(line);
+					Scanner word = new Scanner(line);
+					word.useDelimiter(";");
+					
+					String loannumber = word.next();
+					LocalDate loandate = LocalDate.parse(word.next());
+					LocalDate returndate = LocalDate.parse(word.next());
+					String equipmentnumber = word.next();
+					String membernumber = word.next();
+					String gearofficer = word.next();
+					double cost = word.nextDouble();
+					
+			        Loan loan = new Loan(loannumber, loandate, returndate,equipmentnumber, membernumber,gearofficer, cost);
+			  		loans[loanCount] = loan;
+			  		loanCount++;
+			  		word.close();
 				}
-				else {count+=1;}
-			}
-			
-			System.out.println("Loaded "+ count +" loans");
-			
-			input.close();
-    		
-    	}catch (IOException e) {
-            System.out.println("Error loading loans: " + e.getMessage());
-        }
+				
+				for(int i=0;i<loans.length;i++) {
+					if (loans[i] == null || loans[i].equals("")) {
+						break;
+					}
+					else {count+=1;}
+				}
+				
+				System.out.println("Loaded "+ count +" loans");
+				return;
+	    		
+	    	}catch (IOException e) {
+//		            System.out.println("Error loading loans: " + e.getMessage());
+				System.out.println("loan.txt not found");
+				Scanner pathtxt = new Scanner(System.in);
+				System.out.println("Please state the file path to loan.txt (Example = C:\\Users\\USER\\Desktop\\folderexample\\equipment.txt): ");
+				String x=pathtxt.nextLine();
+
+	
+				x.replace("\\","/");
+				x.replace("C:","");
+				path = x;
+
+				continue;
+		     
+	    	}
+    	}
 
     }
     public static boolean checkEquipmentNumberExists(int number) {

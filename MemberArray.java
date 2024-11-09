@@ -69,7 +69,7 @@ public class MemberArray{
 
 			System.out.println("member.txt not found");
 			Scanner pathtxt = new Scanner(System.in);
-			System.out.println("Please state the file path to equipment.txt (Example = C:\\Users\\USER\\Desktop\\folderexample\\member.txt): ");
+			System.out.println("Please state the file path to member.txt (Example = C:\\Users\\USER\\Desktop\\folderexample\\member.txt): ");
 			String x=pathtxt.nextLine();
 
 			x.replace("\\","/");
