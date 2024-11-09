@@ -1,4 +1,8 @@
-
+//TEAM:
+//Hidayat - B20240386
+//Za’em - B20240387
+//Fa’izah - B20240050
+//Asyraf - B20240436
 import java.util.Scanner;
 
 public class Activity {

@@ -1,3 +1,8 @@
+//TEAM:
+//Hidayat - B20240386
+//Za’em - B20240387
+//Fa’izah - B20240050
+//Asyraf - B20240436
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -37,7 +42,10 @@ public class Loan {
     public String getLoanNumber() {return loanNumber;}
     public String getGearOfficer() {return gearofficer;}
     
+    //setters
+    public static void setLoanCount(int number) {loanCount=number;} 
     
+    //Checks if loan return date is overdue
     public static boolean isOverdue(Loan loan, LocalDate currentDate) {
     	//System.out.println(loan); 
     	if (loan.getReturnDate().isBefore(currentDate)==true) {
@@ -48,11 +56,27 @@ public class Loan {
     	}
     }
     
+    //Lists all loans with overdue loan dates and their not having been returned yet
     public static void listOverdue(EquipmentArray equipmentarray, LocalDate currentDate) {
+    	for(int i=0;i<loans.length;i++) {
+   		 	if (loans[i] == null || loans[i].equals("")) {
+   		    	System.out.println("\nThere are no overdue loaned equipment.");
+   		    	return;
+   		    	
+				
+   		 	}
+   		 	else if ((loans[i].getReturnDate().isBefore(currentDate))==true 
+   		 			&& (equipmentarray.getEquipmentByNumber(loans[i].getEquipmentNumber()).getReturned())==false) {
+   		 		break;
+   		 		
+   		 	}
+    	}
+   		
     	
     	System.out.println("\nAs of the current date: "+currentDate);
     	
     	System.out.println("\nThese equipment are overdue: ");
+    	
     	
     	System.out.println("Equipment no, Equipment name, Description, Activity, Loan no, Expected return date, Gearofficer");
 
@@ -82,7 +106,7 @@ public class Loan {
     	
     }
 
-    
+    //Calculates hire cost 
     public static int calculateCost(LocalDate loanDate, LocalDate returnDate,int hirecostperweekend, int hirecostperweek) {
         long days = java.time.temporal.ChronoUnit.DAYS.between(loanDate, returnDate);
         //System.out.println(days);
@@ -98,7 +122,8 @@ public class Loan {
 
     
 
-    public static void setLoanCount(int number) {loanCount=number;} 
+    
+    
     // Load loans from file
     public static void loadLoans() {
 	   	File myFile;
@@ -162,6 +187,8 @@ public class Loan {
     	}
 
     }
+    
+    //Checks if specific equipment number exists in loans
     public static boolean checkEquipmentNumberExists(int number) {
     	for (int i = 0; i<loans.length;i++) {
 			if (loans[i] == null || loans[i].equals("")) {
@@ -181,6 +208,8 @@ public class Loan {
     	return false;
     	
     }
+    
+    //gets a specific loan member object based on specified loan number
     public static Loan getloan(int number) {
     	for (int i = 0; i<loans.length;i++) {
 			if (loans[i] == null || loans[i].equals("")) {

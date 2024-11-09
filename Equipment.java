@@ -1,4 +1,8 @@
-
+//TEAM:
+//Hidayat - B20240386
+//Za’em - B20240387
+//Fa’izah - B20240050
+//Asyraf - B20240436
 public class Equipment {
 	private String name, description, date_of_purchased,activity;
 	private int equipment_number, purchase_cost, hire_cost_per_weekend, hire_cost_per_week;

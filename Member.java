@@ -1,4 +1,8 @@
-
+//TEAM:
+//Hidayat - B20240386
+//Za’em - B20240387
+//Fa’izah - B20240050
+//Asyraf - B20240436
 public class Member {
 	private String first_name, last_name, email, address;
 	private int phone_number, student_role_number, member_number;

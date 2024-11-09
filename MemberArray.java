@@ -1,8 +1,8 @@
-// Team:
-// Fa’izah B20240050
-// Hidayat b20240386
-// zaem b20240387
-// Asyraf B20240436
+//TEAM:
+//Hidayat - B20240386
+//Za’em - B20240387
+//Fa’izah - B20240050
+//Asyraf - B20240436
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

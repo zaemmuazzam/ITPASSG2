@@ -1,3 +1,8 @@
+//TEAM:
+//Hidayat - B20240386
+//Za’em - B20240387
+//Fa’izah - B20240050
+//Asyraf - B20240436
 import java.time.LocalDate;
 import java.util.*;
 
@@ -181,15 +186,8 @@ public class MainInterface {
                     continue;
 
                 case 4:
-                    System.out.println("Loaned Equipment:");
                     
                     eqarray.displayLoanedEquipment();
-                    //for testing
-//                    System.out.println();
-//                    eqarray.displayEquipments(); 
-//                    System.out.println();
-//                    Loan.viewLoans();
-
                     continue;
 
                 case 5:
@@ -369,12 +367,14 @@ public class MainInterface {
         try {
             boolean validInput = false;
             int equipmentNumber = -1;
-            System.out.print("Returnable equipment:");
-            eqarray.displayLoanedEquipment();
+            //System.out.println("Returnable equipment:");
+            if (eqarray.displayLoanedEquipment()==false) {
+            	return;
+            }
             
             // Loop until valid equipment number is entered
             while (!validInput) {
-                System.out.print("Enter the equipment number you want to return: ");
+                System.out.println("\nEnter the equipment number you want to return: ");
                 if (scanner.hasNextInt()) {
                     equipmentNumber = scanner.nextInt();
                     validInput = true; // valid input, break the loop
@@ -396,7 +396,7 @@ public class MainInterface {
             System.out.println("Are you sure you want to return the following equipment?");
             System.out.println("Equipment Number: " + equipment.getEquipmentNumber());
             System.out.println("Equipment Name: " + equipment.getName());
-            System.out.print("Confirm return? (yes/no): ");
+            System.out.print("\nConfirm return? (yes/no): ");
             scanner.nextLine();  // Consume any leftover newline
             String confirmReturn = scanner.nextLine().trim();
             

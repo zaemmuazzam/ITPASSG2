@@ -1,8 +1,8 @@
-// Team:
-// Fa’izah B20240050
-// Hidayat b20240386
-// zaem b20240387
-// Asyraf B20240436
+//TEAM:
+//Hidayat - B20240386
+//Za’em - B20240387
+//Fa’izah - B20240050
+//Asyraf - B20240436
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -144,7 +144,20 @@ public class EquipmentArray {
 	}
 	
 	//Display equipment that already have been loaned
-	public void displayLoanedEquipment() {
+	public boolean displayLoanedEquipment() {
+    	for(int i=0;i<equipments.length;i++) {
+   		 	if (equipments[i] == null || equipments[i].equals("")) {
+   		    	System.out.println("\nThere are no equipment currently being loaned.");
+   		    	return false;
+   		    	
+				
+   		 	}
+   		 	else if (equipments[i].getReturned() == false) {
+   		 		break;
+   		 		
+   		 	}
+    	}
+    	System.out.println("\nLoaned Equipment:");
 		System.out.println("Equipment no, Equipment name, Description, Activity, Cost weekend, Cost per week");
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
@@ -155,6 +168,7 @@ public class EquipmentArray {
 						+", "+equipments[i].getDescription()+", "+equipments[i].getActivity()+", $"+equipments[i].getHireCostPerWeekend()
 						+", $"+equipments[i].getHireCostPerWeek());}
 			}
+		return true;
 		
 	}
 
