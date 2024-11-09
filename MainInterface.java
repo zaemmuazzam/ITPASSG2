@@ -176,18 +176,7 @@ public class MainInterface {
 
                 case 3:
                 	
-//                    System.out.print("Enter equipment name to loan: ");
-//                    String loanEquipmentName = scanner.nextLine();
-//                    Equipment equipmentToLoan = findEquipment(loanEquipmentName);
-//                    if (equipmentToLoan != null && !equipmentToLoan.isLoaned) {
-//                        System.out.print("Enter member name: ");
-//                        String loanMemberName = scanner.nextLine();
-//                        loanedItems.add(new LoanedItem(equipmentToLoan, loanMemberName));
-//                        equipmentToLoan.isLoaned = true;
-//                        System.out.println("Equipment loaned: " + loanEquipmentName);
-//                    } else {
-//                        System.out.println("Equipment not available for loan.");
-//                    }
+
                 	loanEquipment(memarray,eqarray);
                     continue;
 
@@ -211,18 +200,14 @@ public class MainInterface {
                 case 6:
                 	 returnEquipment(eqarray, scanner);
                 	 continue;
-//                    String returnEquipmentName = scanner.nextLine();
-//                    LoanedItem itemToReturn = findLoanedItem(returnEquipmentName);
-//                    if (itemToReturn != null) {
-//                        itemToReturn.equipment.isLoaned = false;
-//                        loanedItems.remove(itemToReturn);
-//                        System.out.println("Equipment returned: " + returnEquipmentName);
-//                    } else {
-//                        System.out.println("No loaned equipment found with that name.");
-//                    }
+
                     
 
                 case 0:
+                	eqarray.saveEquipments("equipment.txt");
+                	memarray.saveMembers("member.txt");
+                	Loan.saveLoans("loan.txt");
+                	
                     System.out.println("Exiting the program.");
                     System.exit(0);
 
@@ -376,6 +361,8 @@ public class MainInterface {
         try {
             boolean validInput = false;
             int equipmentNumber = -1;
+            System.out.print("Returnable equipment:");
+            eqarray.displayLoanedEquipment();
             
             // Loop until valid equipment number is entered
             while (!validInput) {
@@ -389,24 +376,25 @@ public class MainInterface {
                 }
             }
 
+
             // Find the equipment by number
-            String[] equipment = eqarray.getEquipmentNumberByNumber(equipmentNumber);
-            if (equipment.length == 0) {
-                System.out.println("Invalid equipment number. Please try again.");
-                return;
-            }
+          Equipment equipment = eqarray.getLoanedEquipmentByNumber(equipmentNumber);
+          if (equipment == null) {
+              System.out.println("Invalid equipment number. Please try again.");
+              return;
+          }
 
             // Ask for confirmation before returning the equipment
             System.out.println("Are you sure you want to return the following equipment?");
-            System.out.println("Equipment Number: " + equipment[0]);
-            System.out.println("Equipment Name: " + eqarray.getEquipmentByNumber(Integer.parseInt(equipment[0])).getName());
+            System.out.println("Equipment Number: " + equipment.getEquipmentNumber());
+            System.out.println("Equipment Name: " + equipment.getName());
             System.out.print("Confirm return? (yes/no): ");
             scanner.nextLine();  // Consume any leftover newline
             String confirmReturn = scanner.nextLine().trim();
             
             if (confirmReturn.equalsIgnoreCase("yes")) {
                 // Proceed with returning the equipment
-                eqarray.returnEquipmentByNumber(Integer.parseInt(equipment[0]));
+                eqarray.returnEquipmentByNumber(equipment.getEquipmentNumber());
                 System.out.println("Equipment returned successfully.");
             } else {
                 System.out.println("Equipment return canceled.");

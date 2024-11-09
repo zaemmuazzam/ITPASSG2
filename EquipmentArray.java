@@ -3,17 +3,14 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class EquipmentArray {
 	private Equipment[] equipments;
-	private ArrayList<Equipment> equipmentList;
 	
 	    public EquipmentArray(String txtfile) {
 
 		Equipment.setNumberOfEquipment(0);
 		equipments = new Equipment[300];
-		equipmentList = new ArrayList<>();
 		int count =0;
 		
 		try {
@@ -52,7 +49,6 @@ public class EquipmentArray {
 					Equipment a = new Equipment(equipment_number,name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
 					//System.out.println(a.getNumberOfEquipment());
 					equipments[a.getNumberOfEquipment()-1]=a;
-					equipmentList.add(a);
 					word.close();
 					
 					//System.out.println(data);
@@ -104,6 +100,24 @@ public class EquipmentArray {
 		return equipments[number];	
 	}
 	
+	public Equipment getLoanedEquipmentByNumber(int number) {
+		if (equipments[number] == null || equipments[number].equals("")) {
+		
+			return null;
+		} else {
+			if (equipments[number].getReturned()==false) { 
+				return equipments[number];
+				
+			} else {
+				System.out.println("Invalid equipment number. Please try again.");
+			
+				return null;
+			}
+			
+		}
+	
+	}
+	
 	
 	public void displayEquipmentForLoan() {
 		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
@@ -131,6 +145,7 @@ public class EquipmentArray {
 			}
 		
 	}
+
 	
 	public void returnEquipmentByNumber(int equipmentNumber) {
 	    for (int i = 0; i < equipments.length; i++) {
@@ -225,6 +240,7 @@ public class EquipmentArray {
 			}
 			
 			writer.close();
+			System.out.println("Equipments saved");
 		}
 		
 		catch (IOException e) {
@@ -235,24 +251,10 @@ public class EquipmentArray {
 		
 
 	}
-
-
-
-
-public Equipment findLoanedEquipmentByNameOrNumber(String nameOrNumber) {
-    for (Equipment equipment : equipmentList) {
-        if (equipment.getName().equalsIgnoreCase(nameOrNumber) || 
-            String.valueOf(equipment.getEquipmentNumber()).equals(nameOrNumber)) {
-            return equipment;
-        }
-    }
-    return null; // Return null if no matching equipment is found
 }
 
-// Method to add equipment to the list (for testing and usage purposes)
-public void addEquipment(Equipment equipment) {
-    equipmentList.add(equipment);
-}
-}
+
+
+
 
 

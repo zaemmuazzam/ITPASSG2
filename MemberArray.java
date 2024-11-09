@@ -9,9 +9,7 @@ public class MemberArray{
 		
 	
 	public MemberArray(String txtfile) {
-		//ArrayList<Member> members = new ArrayList<Member>();
-		
-		//Member[] members = new Member[300];
+
 		Member.setNumberOfMembers(0);
 		members = new Member[300];
 		int count =0;
@@ -128,6 +126,7 @@ public class MemberArray{
 			}
 			
 			writer.close();
+			System.out.println("Members saved");
 		}
 		
 		catch (IOException e) {

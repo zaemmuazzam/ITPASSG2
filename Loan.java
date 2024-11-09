@@ -2,10 +2,9 @@ import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.*;
-import java.util.ArrayList;
 
 public class Loan {
-	private ArrayList<Equipment> loanedEquipmentList;
+	//private ArrayList<Equipment> loanedEquipmentList;
     private String loanNumber;
     private LocalDate loanDate;
     private LocalDate returnDate;
@@ -17,9 +16,9 @@ public class Loan {
     
     
     
-    public Loan() {
-        loanedEquipmentList = new ArrayList<>();
-    }
+//    public Loan() {
+//        loanedEquipmentList = new ArrayList<>();
+//    }
     
     
     private static Loan[] loans = new Loan[300]; // Fixed-size array of 300 elements
@@ -41,7 +40,7 @@ public class Loan {
     
     //getters
     public LocalDate getReturnDate() {return returnDate;}
-    public int getEquipmentNumber() {return Integer.parseInt(equipmentNumber);}
+    public int getEquipmentNumber() {return Integer.parseInt(equipmentNumber.trim());}
     public String getLoanNumber() {return loanNumber;}
     public String getGearOfficer() {return gearofficer;}
     
@@ -109,20 +108,7 @@ public class Loan {
     public static void setLoanCount(int number) {loanCount=number;} 
     // Load loans from file
     public static void loadLoans() {
-//        try (BufferedReader reader = new BufferedReader(new FileReader("loan.txt"))) {
-//            String line;
-//            int count=0;
-//            while ((line = reader.readLine()) != null && loanCount < loans.length) {
-//            	System.out.println(line);
-//            	count++;
-//                String[] details = line.split(",");
-//                Loan loan = new Loan(details[0], LocalDate.parse(details[1]), LocalDate.parse(details[2]),
-//                        details[3], details[4], Double.parseDouble(details[5].substring(1)));
-//                loans[loanCount++] = loan;
-//                
-//            }
-//            System.out.println("Loaded "+ count +" loans");
-//        } 
+
     	setLoanCount(0);
     	try {
     		File myFile = new File ("loan.txt");
@@ -182,66 +168,89 @@ public class Loan {
         }
 
     }
+    public static boolean checkEquipmentNumberExists(int number) {
+    	for (int i = 0; i<loans.length;i++) {
+			if (loans[i] == null || loans[i].equals("")) {
+			
+				break;
+			} else {
+				if (loans[i].getEquipmentNumber()==number) {
+					return true;
+				}
+				else {
+					return false;
+				}
+				
+			}
+				
+    	}
+    	return false;
+    	
+    }
+    public static Loan getloan(int number) {
+    	for (int i = 0; i<loans.length;i++) {
+			if (loans[i] == null || loans[i].equals("")) {
+			
+				break;
+			} else {
+				if (loans[i].getEquipmentNumber()==number) {
+					return loans[i];
+				}
+				else {
+					return null;
+				}
+				
+			}
+				
+    	}
+    	return null;
+    	
+    }
 
     // Save loans to file
-    private static void saveLoans() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("loan.txt", true))) {
-            for (int i = 0; i < loanCount; i++) {
-                writer.write(loans[i].toString());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.out.println("Error saving loans: " + e.getMessage());
-        }
+    public static void saveLoans(String txtfile) {
+
+    	try {
+//			File myFile = new File (txtfile);
+//			FileWriter writer= new FileWriter(myFile, false);
+			FileWriter writer= new FileWriter(txtfile, false);
+			writer.write("");
+			writer.close();
+			
+//			writer = new FileWriter(myFile, true);
+			writer= new FileWriter(txtfile, true);
+			for (int i=0;i<loans.length;i++) {
+				if (loans[i] == null || loans[i].equals("")) {
+					break;
+				}
+				else { writer.write(loans[i].toString()+"\n");}
+			}
+			
+			writer.close();
+			System.out.println("Loans saved");
+		}
+		
+		catch (IOException e) {
+			System.out.println("An error has occured");
+			e.printStackTrace();
+			return;
+		}
         
     }
 
     // Display loan details in a string format
     @Override
     public String toString() {
-        return loanNumber + "," + loanDate + "," + returnDate + "," +
-               equipmentNumber + "," + memberNumber + ",$" + cost;
+        return loanNumber + ";" + loanDate + ";" + returnDate + ";" +
+               equipmentNumber + ";" + memberNumber + ";" + gearofficer + ";" + (int)cost;
+    }
+    public String toString2() {
+        return loanNumber + ", " + loanDate + ", " + returnDate + ", " +
+               equipmentNumber + ", " + memberNumber + ", " + gearofficer + ", " + (int)cost;
     }
 
     // Loan equipment logic with confirmation
     public static void loanEquipment(LocalDate loanDate, LocalDate returnDate, int equipmentNumber, int memberNumber, String gearofficer, int hirecost) {
-//        Scanner scanner = new Scanner(System.in);
-//        String loanNumber, equipmentNumber, memberNumber;
-//        LocalDate loanDate = null, returnDate;
-//
-//        while (true) {
-//            try {
-//                System.out.print("Enter loan number: ");
-//                loanNumber = scanner.nextLine();
-//                System.out.print("Enter loan date (yyyy-MM-dd): ");
-//                loanDate = LocalDate.parse(scanner.nextLine());
-//                break;
-//            } catch (Exception e) {
-//                System.out.println("Invalid date format. Please try again.");
-//            }
-//        }
-//
-//        returnDate = loanDate.plusWeeks(1);
-//        System.out.println("Expected return date: " + returnDate);
-//
-//        System.out.print("Enter equipment number: ");
-//        equipmentNumber = scanner.nextLine();
-//        System.out.print("Enter member number: ");
-//        memberNumber = scanner.nextLine();
-//
-//        double dailyRate = 10.0;
-//        double cost = calculateCost(loanDate, returnDate, dailyRate);
-//
-//        System.out.println("\nPlease review the loan details:");
-//        System.out.println("Loan Number: " + loanNumber);
-//        System.out.println("Loan Date: " + loanDate);
-//        System.out.println("Return Date: " + returnDate);
-//        System.out.println("Equipment Number: " + equipmentNumber);
-//        System.out.println("Member Number: " + memberNumber);
-//        System.out.println("Cost: $" + cost);
-//
-//        System.out.print("\nConfirm your input? (yes/no): ");
-//        if (scanner.nextLine().trim().equalsIgnoreCase("yes")) {
     
             if (loanCount < loans.length) {
             	
@@ -313,50 +322,6 @@ public class Loan {
             }
         }
     }
-//    public static void main(String[] args) {
-//    	System.out.println(calculateCost(LocalDate.parse("2023-03-10"),LocalDate.parse("2023-03-13"),3,5));
-//    }
 
-//    public static void main(String[] args) {
-//        loadLoans();
-//        Scanner scanner = new Scanner(System.in);
-//        int choice;
-//
-//        do {
-//            System.out.println("\n===== Loan System =====");
-//            System.out.println("1. Loan Equipment");
-//            System.out.println("2. View Loans");
-//            System.out.println("3. Return Equipment");
-//            System.out.println("4. Exit");
-//            System.out.print("Enter your choice: ");
-//
-//            choice = scanner.nextInt();
-//            scanner.nextLine(); // Consume newline
-//
-//            switch (choice) {
-//                case 1 -> loanEquipment();
-//                case 2 -> viewLoans();
-//                case 3 -> returnEquipment();
-//                case 4 -> System.out.println("Goodbye!");
-//                default -> System.out.println("Invalid choice. Please try again.");
-//            }
-//        } while (choice != 4);
-//    }
-
-
-public void addLoan(Equipment equipment) {
-    loanedEquipmentList.add(equipment);
-}
-
-// Method to remove equipment from loan
-public void removeLoan(Equipment equipment) {
-    if (loanedEquipmentList.remove(equipment)) {
-        System.out.println("Loan removed for equipment: " + equipment.getName());
-    } else {
-        System.out.println("Equipment not found in the loaned list.");
-        
-    }
-    
-}
 }
 
