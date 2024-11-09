@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.io.*;
 
 public class Loan {
-	//private ArrayList<Equipment> loanedEquipmentList;
     private String loanNumber;
     private LocalDate loanDate;
     private LocalDate returnDate;
@@ -15,16 +14,10 @@ public class Loan {
     private Boolean isLoaned;
     
     
-    
-//    public Loan() {
-//        loanedEquipmentList = new ArrayList<>();
-//    }
-    
-    
     private static Loan[] loans = new Loan[300]; // Fixed-size array of 300 elements
     private static int loanCount = 0; // Track the number of loans added
 
-    // Constructor
+    
     public Loan(String loanNumber, LocalDate loanDate, LocalDate returnDate,
                 String equipmentNumber, String memberNumber,String gearofficer, double cost) {
     	
@@ -89,7 +82,7 @@ public class Loan {
     	
     }
 
-    // Method to calculate loan cost based on the duration
+    
     public static int calculateCost(LocalDate loanDate, LocalDate returnDate,int hirecostperweekend, int hirecostperweek) {
         long days = java.time.temporal.ChronoUnit.DAYS.between(loanDate, returnDate);
         //System.out.println(days);
@@ -104,7 +97,7 @@ public class Loan {
     }
 
     
-    //setters
+
     public static void setLoanCount(int number) {loanCount=number;} 
     // Load loans from file
     public static void loadLoans() {
