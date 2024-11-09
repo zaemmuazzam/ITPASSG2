@@ -6,20 +6,20 @@ import java.io.IOException;
 
 public class EquipmentArray {
 	private Equipment[] equipments;
-	
+		
+	//When Equipment array is instantiated an array of equipment members is created
 	    public EquipmentArray(String txtfile) {
 
 		Equipment.setNumberOfEquipment(0);
 		equipments = new Equipment[300];
 		int count =0;
 		
-		try {
+		try {//Equipment.txt is opened 
 			File myFile = new File (txtfile);
 			Scanner input = new Scanner(myFile);
-			//line.useDelimiter(";");
-			while(input.hasNextLine()) {
-//		
-//					System.out.println("Round "+count);
+			
+			while(input.hasNextLine()) { //and the records are loaded one line at a time into the array as equipment objects
+
 					String line = input.nextLine();
 					Scanner word = new Scanner(line);
 					word.useDelimiter(";");
@@ -35,24 +35,12 @@ public class EquipmentArray {
 					Boolean returned = Boolean.parseBoolean(word.next());
 					
 					
-//					System.out.println(equipment_number);
-//					System.out.println(name);
-//					System.out.println(description);
-//					System.out.println(date_of_purchased);
-//					System.out.println(purchase_cost);
-//					System.out.println(hire_cost_per_weekend);
-//					System.out.println(hire_cost_per_week);
-//					System.out.println(activity);
-//					System.out.println(returned);
-					
 					
 					Equipment a = new Equipment(equipment_number,name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
-					//System.out.println(a.getNumberOfEquipment());
+
 					equipments[a.getNumberOfEquipment()-1]=a;
 					word.close();
-					
-					//System.out.println(data);
-				//}
+
 			}
 			input.close();
 			
@@ -76,8 +64,10 @@ public class EquipmentArray {
 		
 	}
 	
+	    //For getting a equipments array itself 
 	public Equipment[] getArray() {return equipments;}
 	
+	//For getting getting the equipment number by number of 
 	public String[] getEquipmentNumberByNumber(int number) {
 		String[] result = new String[3];
 		for (int i=0;i<equipments.length;i++) {
@@ -96,10 +86,12 @@ public class EquipmentArray {
 		
 	}
 	
+	//For getting a specific equipment according to the equipment number
 	public Equipment getEquipmentByNumber(int number) {
 		return equipments[number];	
 	}
 	
+	//For getting a loaned equipment by their equipment number
 	public Equipment getLoanedEquipmentByNumber(int number) {
 		if (equipments[number] == null || equipments[number].equals("")) {
 		
@@ -118,7 +110,7 @@ public class EquipmentArray {
 	
 	}
 	
-	
+	//Display equipment available for loan
 	public void displayEquipmentForLoan() {
 		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
 		for (int i=0;i<equipments.length;i++) {
@@ -132,6 +124,8 @@ public class EquipmentArray {
 			}
 		
 	}
+	
+	//Display equipment that already have been loaned
 	public void displayLoanedEquipment() {
 		System.out.println("Equipment no, Equipment name, Description, Activity, Cost weekend, Cost per week");
 		for (int i=0;i<equipments.length;i++) {
@@ -146,7 +140,7 @@ public class EquipmentArray {
 		
 	}
 
-	
+	//Returning an equipment according to the specificed equipment number
 	public void returnEquipmentByNumber(int equipmentNumber) {
 	    for (int i = 0; i < equipments.length; i++) {
 	        if (equipments[i] == null || equipments[i].equals("")) {
@@ -159,7 +153,7 @@ public class EquipmentArray {
 	    }
 	    System.out.println("Equipment number " + equipmentNumber + " not found.");
 	}
-	
+	//For showing all equipments available
 	public void displayEquipments() {
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
@@ -169,14 +163,14 @@ public class EquipmentArray {
 			
 		}
 	}
-	
+	//This method adds equipment after taking a specified name, description, date of purchased, purchase_cost,hire cost per week,activity and returned.
 	public void addEquipment(String name, String description, String date_of_purchased, int purchase_cost, 
 			int hire_cost_per_weekend, int hire_cost_per_week, String activity, Boolean returned) {
 		Equipment a = new Equipment(equipments[0].getNumberOfEquipment()+1,name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
 		equipments[a.getNumberOfEquipment()-1]=a;
 		
 	}
-	
+	//Display all equipments which matches the scpecified
 	public void displayEquipmentByActivity(String activity) {
 		System.out.println("Equipment no, Equipment name, Description Cost weekend, Cost per week");
 		for (int i=0;i<equipments.length;i++) {
@@ -190,7 +184,7 @@ public class EquipmentArray {
 			}
 			
 		}
-		
+		//checks equipment according to activit
 	public boolean checkActivityEquipmentNumberMatch(String activity, int equipmentnumber) {
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
@@ -204,7 +198,7 @@ public class EquipmentArray {
 		
 		
 	}
-	
+	//Method for loaning the equipment by number
 	public void loaningEquipmentByNumber(int equipmentnumber) {
 		for (int i=0;i<equipments.length;i++) {
 			if (equipments[i] == null || equipments[i].equals("")) {
@@ -221,7 +215,7 @@ public class EquipmentArray {
 		
 	}
 	
-
+//Saving array to equipments.txt 
 	public void saveEquipments(String txtfile) {
 		try {
 //			File myFile = new File (txtfile);

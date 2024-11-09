@@ -5,9 +5,9 @@ public class Member {
 	private static int numberofmembers=0;
 	
 	public Member() {
-		numberofmembers=0;
+		numberofmembers=0;// for keeping track of records loaded
 	}
-	
+	//each record of member.txt is saved as an member object called Member
 	public Member (int member_number,String first_name, String last_name, 
 			String email, String address,int student_role_number,int phone_number) {
 		this.member_number=member_number;

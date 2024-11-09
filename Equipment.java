@@ -3,9 +3,10 @@ public class Equipment {
 	private String name, description, date_of_purchased,activity;
 	private int equipment_number, purchase_cost, hire_cost_per_weekend, hire_cost_per_week;
 	private Boolean returned;
-	private static int numberofequipment=0;
+	private static int numberofequipment=0;// for keeping track of records loaded
 	private Boolean isLoaned;
 	
+	//each record of equipment.txt is saved as an member object called Equipment
 	public Equipment(int equipment_number, String name, String description, String date_of_purchased, int purchase_cost, 
 			int hire_cost_per_weekend, int hire_cost_per_week, String activity, Boolean returned) {
 		this.equipment_number=equipment_number;
@@ -50,10 +51,10 @@ public class Equipment {
 	    this.isLoaned = !loaned;
 	}
 	
-
+	//for showing the equipment record spaced and saparated by ,
 	public String displayEquipmentDetail() {return equipment_number+ ", " + name+ ", " + description + ", " + date_of_purchased + ", " + purchase_cost + ", " 
 			+ hire_cost_per_weekend + ", " + hire_cost_per_week + ", " + activity + ", " + returned;}
-	
+	//for showing what the equipment record looks like in the txt files
 	public String toString() { return equipment_number+ ";" + name+ ";" + description + ";" + date_of_purchased + ";" + purchase_cost + ";" 
 			+ hire_cost_per_weekend + ";" + hire_cost_per_week + ";" + activity + ";" + returned;}
 	

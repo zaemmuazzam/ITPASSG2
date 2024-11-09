@@ -72,6 +72,7 @@ public class MemberArray{
 		
 	}
 	
+	//for getting the members array itselft.
 	public Member[] getArray() {return members;}
 	
 	public String getMemberNameByNumber(int membernumber) {
@@ -91,7 +92,7 @@ public class MemberArray{
 		}
 		return "Null";
 	}
-	
+	//Display all members in the record
 	public void displayMembers() {
 		for (int i=0;i<members.length;i++) {
 			if (members[i] == null || members[i].equals("")) {
@@ -102,12 +103,14 @@ public class MemberArray{
 		}
 	}
 	
+	//for adding to members to the array
 	public void addMember(String firstname, String lastname,String email, String address,int studentnumber,int phonenumber) {
 		Member a = new Member(members[0].getNumberOfMembers()+1,firstname,lastname,email,address,studentnumber,phonenumber);
 		members[a.getNumberOfMembers()-1]=a;
 		
 	}
 	
+	//For saving the members array to mebers.txt
 	public void saveMembers(String txtfile) {
 		try {
 //			File myFile = new File (txtfile);
