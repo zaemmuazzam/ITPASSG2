@@ -184,7 +184,7 @@ public class EquipmentArray {
 	//This method adds equipment after taking a specified name, description, date of purchased, purchase_cost,hire cost per week,activity and returned.
 	public void addEquipment(String name, String description, String date_of_purchased, int purchase_cost, 
 			int hire_cost_per_weekend, int hire_cost_per_week, String activity, Boolean returned) {
-		Equipment a = new Equipment(equipments[0].getNumberOfEquipment()+1,name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
+		Equipment a = new Equipment(equipments[0].getNumberOfEquipment(),name,description,date_of_purchased,purchase_cost,hire_cost_per_weekend, hire_cost_per_week,activity,returned);
 		equipments[a.getNumberOfEquipment()-1]=a;
 		
 	}
